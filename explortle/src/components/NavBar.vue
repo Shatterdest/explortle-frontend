@@ -13,7 +13,7 @@
           </div>
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex flex-shrink-0 items-center">
-              <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+              <img class="h-8 w-auto" src="./icons/explortle.png" alt="Your Company" />
             </div>
             <div class="hidden sm:ml-6 sm:block">
               <div class="flex space-x-4">
@@ -22,14 +22,15 @@
             </div>
           </div>
           <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <!-- Bell Icon -->
+            <!-- <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
               <span class="absolute -inset-1.5" />
               <span class="sr-only">View notifications</span>
               <BellIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
+            </button> -->
   
             <!-- Profile dropdown -->
-            <Menu as="div" class="relative ml-3">
+            <!-- <Menu as="div" class="relative ml-3">
               <div>
                 <MenuButton class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                   <span class="absolute -inset-1.5" />
@@ -50,7 +51,7 @@
                   </MenuItem>
                 </MenuItems>
               </transition>
-            </Menu>
+            </Menu> -->
           </div>
         </div>
       </div>
@@ -66,11 +67,9 @@
   <script setup>
   import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
   import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+  import { useRouteStore } from '@/stores/route';
+  import { storeToRefs } from 'pinia'
   
-  const navigation = [
-    { name: 'About Us', href: '#', current: true },
-    { name: 'Contact Us', href: '#', current: false },
-    { name: 'Placeholder', href: '#', current: false },
-    { name: 'Placeholder', href: '#', current: false },
-  ]
+  const navStore = useRouteStore()
+  const navigation = storeToRefs(navStore).route
   </script>
