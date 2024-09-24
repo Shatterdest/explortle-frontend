@@ -5,10 +5,12 @@ import NavBar from '@/components/NavBar.vue';
 
 <template>
   <NavBar  />
-  <main class="bg-gray-300">
+  <main class="main">
   <RouterView /></main>
 </template>
 
 <style scoped>
-
+.main {
+  background-color: #fffefc;
+}
 </style>

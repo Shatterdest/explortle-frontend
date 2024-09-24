@@ -1,5 +1,5 @@
 <template>
-  <Disclosure as="nav" class="bg-purple-400" v-slot="{ open }">
+  <Disclosure as="nav" class="nav-bar" v-slot="{ open }">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -27,7 +27,7 @@
                 :href="item.href"
                 :class="[
                   item.current
-                    ? 'bg-purple-500 text-opacity-40 text-white'
+                    ? 'button'
                     : 'text-gray-900 hover:bg-gray-300',
                   'rounded-md px-3 py-2 text-sm font-medium'
                 ]"
@@ -115,7 +115,11 @@ const navigation = storeToRefs(navStore).route
 
 <style scoped>
 .button{
-  background-color: rgb(132, 252, 216);
+  color: #234372;
+  background-color: #96c0ff;
 }
 
+.nav-bar {
+  background-color: #fffefc;
+}
 </style>

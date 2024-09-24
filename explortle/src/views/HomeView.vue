@@ -44,13 +44,22 @@ const members = ref([
     </ul>
     <h2 class="text-5xl">Meet The Team</h2>
     <div class="text-lg" v-for="member in members" :key="member.id">
-      #{{ member.id }}: 
+      #{{ member.id }}:
       {{ member.name }}
     </div>
   </main>
 </template>
 
 <style scoped>
+h2 {
+  color: #dfa4fe;
+  font-weight: bolder;
+}
+
+h3 {
+  color: #000000;
+}
+
 .container {
   display: flex;
   justify-content: center;
