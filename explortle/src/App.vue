@@ -4,13 +4,14 @@ import NavBar from '@/components/NavBar.vue';
 </script>
 
 <template>
-  <NavBar  />
+  <NavBar> </NavBar>
   <main class="main">
   <RouterView /></main>
+  <footer>Follow our socials!</footer>
 </template>
 
 <style scoped>
 .main {
-  background-color: #fffefc;
+  background-color: #ffffff;
 }
 </style>
