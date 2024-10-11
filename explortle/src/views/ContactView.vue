@@ -1,105 +1,110 @@
 <template>
-  <div class="contact-us-form">
-    <h2>Contact Us</h2>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" v-model="form.name" id="name" required />
-      </div>
+  <main class="contact-main">
+    <div class="contact-us-form card">
+      <h2 class="text-5xl">Contact Us</h2>
+      <form @submit.prevent="submitForm">
+        <div>
+          <label for="name" class="text-lg">Name:</label>
+          <input type="text" v-model="form.name" id="name" required />
+        </div>
 
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" v-model="form.email" id="email" required />
-      </div>
+        <div>
+          <label for="email" class="text-lg">Email:</label>
+          <input type="email" v-model="form.email" id="email" required />
+        </div>
 
-      <div>
-        <label for="message">Message:</label>
-        <textarea v-model="form.message" id="message" required></textarea>
-      </div>
+        <div>
+          <label for="message" class="text-lg">Message:</label>
+          <textarea v-model="form.message" id="message" required></textarea>
+        </div>
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit" class="button">Submit</button>
+      </form>
 
-    <p v-if="statusMessage" :class="statusClass">{{ statusMessage }}</p>
-  </div>
+      <!-- Display form status message -->
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive } from 'vue';
 
+function submitForm() {
+  
+}
+
+// Reactive form state
 const form = reactive({
   name: '',
   email: '',
   message: ''
-})
+});
 
-const statusMessage = ref('')
-const statusClass = ref('')
 
-const sendContactForm = async (formData: any) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve('success'), 1000)
-  })
-}
-
-const submitForm = async () => {
-  if (form.name && form.email && form.message) {
-    try {
-      await sendContactForm(form)
-      statusMessage.value = 'Your message has been sent successfully!'
-      statusClass.value = 'success'
-      resetForm() 
-    } catch (error) {
-      statusMessage.value = 'There was an error sending your message. Please try again later.'
-      statusClass.value = 'error'
-    }
-  } else {
-    statusMessage.value = 'Please fill in all fields.'
-    statusClass.value = 'error'
-  }
-}
-
-const resetForm = () => {
-  form.name = ''
-  form.email = ''
-  form.message = ''
-}
 </script>
 
 <style scoped>
+.contact-main {
+  background-color: #f0f4ff; /* Light blue background */
+  padding: 40px 0;
+}
+
 .contact-us-form {
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
+  padding: 20px;
 }
 
-.contact-us-form div {
-  margin-bottom: 10px;
-}
-
-.contact-us-form input,
-.contact-us-form textarea {
+input,
+textarea {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+}
+
+textarea {
+  min-height: 150px;
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  width: 100%;
+  padding: 15px;
+  background-color: #5a8dc8; /* Muted light blue */
+  color: white;
   border: none;
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1.2em;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #4a7dc3; /* Darker shade on hover */
 }
 
-.success {
+p.success {
   color: green;
 }
 
-.error {
+p.error {
   color: red;
+}
+
+/* Reusing styles from your original code */
+.text-lg {
+  font-size: 1.1em; /* Slightly larger text for labels */
+}
+
+.text-5xl {
+  font-size: 2.5em; /* Larger font for headings */
+}
+
+.card {
+  background-color: white; /* White background for form card */
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 </style>
