@@ -20,32 +20,72 @@
 
         <button type="submit" class="button">Submit</button>
       </form>
+      <h1 :class="statusClass">{{ statusMessage }}</h1>
 
-      <!-- Display form status message -->
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
-
-function submitForm() {
-  
-}
+import emailjs from 'emailjs-com';
 
 // Reactive form state
 const form = reactive({
-  name: '',
-  email: '',
-  message: ''
+  name: '',    
+  email: '',   
+  message: ''  
 });
 
+const statusMessage = ref('');
+const statusClass = ref('');
 
+const sendContactForm = async () => {
+  try {
+    const serviceID = 'service_xx62phj'; 
+    const templateID = 'template_bi2yaog'; 
+    const userID = '1ZQk7x1OgqnKTTHxl'; 
+
+    const templateParams = {
+      from_name: form.name, 
+      message: form.message,  
+      from_email: form.email  
+    };
+
+    await emailjs.send(serviceID, templateID, templateParams, userID);
+  } catch (error) {
+    throw new Error('Email sending failed');
+  }
+};
+
+const submitForm = async () => {
+  if (form.name && form.message) {
+    try {
+      await sendContactForm();
+      statusMessage.value = 'Your message has been sent successfully!';
+      statusClass.value = 'success';
+      resetForm();  
+    } catch (error) {
+      statusMessage.value = 'There was an error sending your message. Please try again later.';
+      statusClass.value = 'error';
+    }
+  } else {
+    statusMessage.value = 'Please fill in all required fields.';
+    statusClass.value = 'error';
+  }
+};
+
+const resetForm = () => {
+  form.name = '';
+  form.email = '';
+  form.message = '';
+};
 </script>
+
 
 <style scoped>
 .contact-main {
-  background-color: #f0f4ff; /* Light blue background */
+  background-color: #f0f4ff; 
   padding: 40px 0;
 }
 
@@ -60,8 +100,8 @@ textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #e0e0e0; /* Light gray border */
-  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #e0e0e0; 
+  border-radius: 8px; 
 }
 
 textarea {
@@ -71,17 +111,17 @@ textarea {
 button {
   width: 100%;
   padding: 15px;
-  background-color: #5a8dc8; /* Muted light blue */
+  background-color: #5a8dc8; 
   color: white;
   border: none;
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 5px;
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #4a7dc3; /* Darker shade on hover */
+  background-color: #4a7dc3; 
 }
 
 p.success {
@@ -92,19 +132,18 @@ p.error {
   color: red;
 }
 
-/* Reusing styles from your original code */
 .text-lg {
-  font-size: 1.1em; /* Slightly larger text for labels */
+  font-size: 1.1em; 
 }
 
 .text-5xl {
-  font-size: 2.5em; /* Larger font for headings */
+  font-size: 2.5em; 
 }
 
 .card {
-  background-color: white; /* White background for form card */
-  border: 1px solid #e0e0e0; /* Light gray border */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: white; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 </style>
