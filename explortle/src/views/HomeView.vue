@@ -48,11 +48,11 @@ const members = ref([
         >
       </li>
     </ul>
-    <h2 class="text-5xl">Meet The Team</h2>
+    <!-- <h2 class="text-5xl">Meet The Team</h2>
     <div class="text-lg" v-for="member in members" :key="member.id">
       #{{ member.id }}:
       {{ member.name }}
-    </div>
+    </div> -->
   </main>
 </template>
 
