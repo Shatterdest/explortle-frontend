@@ -1,5 +1,5 @@
 <template>
-  <nav class="relative flex items-center justify-between bg-purple-600 p-4 rounded-lg">
+  <nav class="relative flex items-center justify-between bg-purple-600 p-4">
     <div class="flex-shrink-0">
       <slot><img class="h-14" src="../assets/imgs/explortle.png" alt=""></slot>
     </div>
