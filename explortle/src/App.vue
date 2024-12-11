@@ -25,32 +25,32 @@ import NavBar from '@/components/NavBar.vue'
 
 .icon {
   width: 50px;
-  transition: transform 0.3s, opacity 0.3s; /* Smooth hover effect */
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .icon:hover {
-  transform: scale(1.1); /* Slightly enlarge the icon */
-  opacity: 0.8; /* Slightly dim the icon */
+  transform: scale(1.1);
+  opacity: 0.8;
 }
 
 .social-wrapper {
-  display: flex; /* Use flexbox for alignment */
-  justify-content: center; /* Center-align content horizontally */
-  align-items: center; /* Center-align content vertically */
-  padding: 20px 0; /* Add vertical spacing */
-  background-color: #e7e7e7; /* Light background to separate section visually */
-  border-top: 1px solid #e0e0e0; /* Subtle border for separation */
-  gap: 15px; /* Spacing between items */
-  font-size: 1.2em; /* Slightly larger text */
-  color: #333; /* Dark text for readability */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #e7e7e7;
+  border-top: 1px solid #e0e0e0;
+  gap: 15px;
+  font-size: 1.2em;
+  color: #333;
 }
 
 .social-wrapper a {
-  text-decoration: none; /* Remove underline from links */
-  color: inherit; /* Inherit color for text */
+  text-decoration: none;
+  color: inherit;
 }
 
 .social-wrapper a:hover {
-  color: #5a8dc8; /* Change text color on hover */
+  color: #5a8dc8;
 }
 </style>

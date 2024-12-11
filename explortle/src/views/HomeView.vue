@@ -21,7 +21,7 @@ const members = ref([
 <template>
   <main>
     <div class="about">
-      <h2 class="text-5xl">About Us</h2>
+      <h2 class="text-5xl fade-in">About Us</h2>
       <h3 class="text-lg">
         Explortle is a student-led initiative that aims to bring experienced technical career
         professionals to conduct hands-on workshops in schools across New York City. Through these
@@ -33,7 +33,7 @@ const members = ref([
         and lessons that make students excited to explore different fields.
       </h3>
     </div>
-    <h2 class="text-5xl">Associates</h2>
+    <h2 class="text-5xl fade-in">Associates</h2>
     <ul class="container">
       <li class="card">
         <a target="_blank" href="https://www.acementor.org">
@@ -48,110 +48,73 @@ const members = ref([
         >
       </li>
     </ul>
-    <!-- <h2 class="text-5xl">Meet The Team</h2>
-    <div class="text-lg" v-for="member in members" :key="member.id">
-      #{{ member.id }}:
-      {{ member.name }}
-    </div> -->
   </main>
 </template>
 
-<style scoped>
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4ff; /* Very light blue for the overall background */
-  margin: 0;
-  padding: 0;
-  color: #333; /* Dark text for readability */
+<style lang='css' scoped>
+@import '../assets/base.css';
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-}
-
-h1 {
-  color: #7a6dca; /* Muted light purple */
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-h2 {
-  color: #5a8dc8; /* Muted light blue */
-  font-weight: bolder;
-  margin-top: 40px;
-}
-
-h3 {
-  color: #333;
-  margin: 10px 0;
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .container {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Allows wrapping of cards on smaller screens */
-  margin: 20px 0;
+  flex-wrap: wrap;
 }
 
 .card {
-  background-color: white; /* White background for cards */
-  border: 1px solid #e0e0e0; /* Light gray border */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin: 10px;
   padding: 20px;
-  flex: 1 1 calc(30% - 40px); /* Responsive card layout */
+  flex: 1 1 calc(30% - 40px);
   max-width: calc(30% - 40px);
-  transition: transform 0.3s; /* Smooth scaling effect */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Slightly scale up on hover */
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
   max-width: 100%;
-  border-radius: 8px; /* Match card corners */
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
 }
 
-.text-lg {
-  font-size: 1.1em; /* Slightly larger text for team members */
-  margin: 5px 0;
+.card img:hover {
+  opacity: 0.9;
 }
 
-.text-5xl {
-  font-size: 2.5em; /* Larger font for subheadings */
+h2, h3 {
+  font-family: var(--font-family);
 }
 
-.text-7xl {
-  font-size: 3.5em; /* Largest font for main heading */
+h2 {
+  color: var(--color-primary);
+  margin-top: 40px;
 }
 
-/* Navbar Styles */
-.navbar {
-  background-color: #7a6dca; /* Muted light purple */
-  padding: 10px 20px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px; /* Slight rounding */
+h3 {
+  color: var(--color-text-muted);
 }
 
-/* Button Styles */
-.button {
-  background-color: #5a8dc8; /* Muted light blue */
-  color: white;
-  border: none;
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background-color: #4a7dc3; /* Darker shade on hover */
+@media screen and (max-width: 768px) {
+  .card {
+    flex: 1 1 calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
 }
 </style>
