@@ -48,6 +48,7 @@ const members = ref([
         >
       </li>
     </ul>
+    <img class="flex items-center justify-center" src="../assets/imgs/things/us.jpg" alt="">
   </main>
 </template>
 
