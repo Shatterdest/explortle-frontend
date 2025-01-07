@@ -33,6 +33,9 @@ const members = ref([
         and lessons that make students excited to explore different fields.
       </h3>
     </div>
+    <div class="flex justify-center">
+      <img class="max-w-full h-auto" src="../assets/imgs/things/us.jpg" alt="" />
+    </div>
     <h2 class="text-5xl fade-in">Associates</h2>
     <ul class="container">
       <li class="card">
@@ -43,16 +46,15 @@ const members = ref([
       </li>
       <li class="card">
         <a target="_blank" href="https://aiasiny.org">
-        <img src="../assets/imgs/aia.png" alt="" />
-        <h3 class="text-3xl">American Institute of Architects Staten Island New York</h3></a
+          <img src="../assets/imgs/aia.png" alt="" />
+          <h3 class="text-3xl">American Institute of Architects Staten Island New York</h3></a
         >
       </li>
     </ul>
-    <img class="flex items-center justify-center" src="../assets/imgs/things/us.jpg" alt="">
   </main>
 </template>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 @import '../assets/base.css';
 
 .fade-in {
@@ -81,7 +83,9 @@ const members = ref([
   padding: 20px;
   flex: 1 1 calc(30% - 40px);
   max-width: calc(30% - 40px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -99,7 +103,8 @@ const members = ref([
   opacity: 0.9;
 }
 
-h2, h3 {
+h2,
+h3 {
   font-family: var(--font-family);
 }
 
