@@ -21,7 +21,7 @@ const members = ref([
 <template>
   <main>
     <div class="about">
-      <h2 class="text-5xl fade-in">About Us</h2>
+      <h2 class="text-5xl">About Us</h2>
       <h3 class="text-lg">
         Explortle is a student-led initiative that aims to bring experienced technical career
         professionals to conduct hands-on workshops in schools across New York City. Through these
