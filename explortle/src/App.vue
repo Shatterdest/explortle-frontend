@@ -23,6 +23,7 @@ import NavBar from '@/components/NavBar.vue'
   background-color: #ffffff;
 }
 
+
 .icon {
   width: 50px;
   transition: transform 0.3s, opacity 0.3s;
