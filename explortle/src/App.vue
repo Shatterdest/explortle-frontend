@@ -15,6 +15,11 @@ import NavBar from '@/components/NavBar.vue'
         <img class='icon' src="../src/assets/imgs/insta.png" alt=""
       /></a>
     </div>
+    <div>
+      <a href="https://www.youtube.com/@ExplortleOrganization" target="_blank">
+        <img class='icon' src="../src/assets/imgs/yt.png" alt=""
+      /></a>
+    </div>
   </footer>
 </template>
 
