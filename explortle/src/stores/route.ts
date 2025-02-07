@@ -6,12 +6,14 @@ export const useRouteStore = defineStore('route', () => {
     { name: 'About Us', href: '/', current: true },
     { name: 'Contact Us', href: '/contact', current: false },
     { name: 'What We Do', href: '/whatwedo', current: false },
+    { name: 'Apply', href: '/apply', current: false },
   ])
   function $reset() {
     route.value = [
       { name: 'About Us', href: '/', current: false },
       { name: 'Contact Us', href: '/contact', current: false },
       { name: 'What We Do', href: '/whatwedo', current: false },
+      { name: 'Apply', href: '/apply', current: false },
     ]
   }
   return { route, $reset }
