@@ -1,8 +1,8 @@
 <template>
   <nav class="relative flex items-center justify-between bg-purple-600 p-4">
-    <div class="flex-shrink-0">
+    <a class="z-50" href="/"><div class="flex-shrink-0">
       <slot><img class="h-14" src="../assets/imgs/explortle.png" alt=""></slot>
-    </div>
+    </div></a>
     <h1 class="absolute left-0 right-0 text-center text-white text-3xl font-bold">Explortle</h1>
     
     <button @click="toggleMenu" class="md:hidden text-white">
