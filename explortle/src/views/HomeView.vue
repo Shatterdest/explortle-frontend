@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import QuizPage from '@/components/quiz/QuizPage.vue'
 import { useRouteStore } from '@/stores/route'
 import { onMounted, ref } from 'vue'
 
@@ -20,6 +21,7 @@ const members = ref([
 
 <template>
   <main>
+    <QuizPage />
     <div class="about">
       <h2 class="text-5xl">About Us</h2>
       <h3 class="text-lg">
