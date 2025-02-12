@@ -40,3 +40,21 @@
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useRouteStore } from '@/stores/route'
+const routeStore = useRouteStore()
+const route = computed(() => routeStore.route)
+const isOpen = ref(false)
+const setCurrent = (name: string) => {
+  routeStore.$reset()
+  const currentRoute = routeStore.route.find((route) => route.name === name)
+  if (currentRoute) {
+    currentRoute.current = true 
+  }
+}
+const toggleMenu = () => {
+  isOpen.value = !isOpen.value
+}
+</script>
