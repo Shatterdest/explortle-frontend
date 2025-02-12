@@ -1,25 +1,41 @@
 <template>
   <div class="quiz-container">
-    <h1>Find Your STEM Career Path!</h1>
+    <h1 class="text-3xl font-heading font-bold text-purple-600">Find Your STEM Career Path!</h1>
 
-    <div v-if="!showResults">
-      <div v-for="(question, index) in questions" :key="index" class="question">
-        <p>{{ question.text }}</p>
-        <div class="options">
+    <div v-if="!quizStarted" class="text-center mt-6">
+      <button 
+        @click="quizStarted = true"
+        class="bg-purple-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition"
+      >
+        Start Quiz
+      </button>
+    </div>
+
+    <div v-if="quizStarted && !showResults">
+      <div v-for="(question, index) in questions" :key="index" class="question bg-gray-100 p-6 rounded-lg shadow-md my-4">
+        <p class="text-lg font-medium text-gray-700">{{ question.text }}</p>
+        <div class="options flex justify-center gap-3 mt-4">
           <button
             v-for="option in [1, 2, 3, 4, 5]"
             :key="option"
             @click="selectAnswer(index, option)"
-            :class="{ selected: answers[index] === option }"
+            :class="{ 'bg-purple-600 text-white': answers[index] === option }"
+            class="px-4 py-2 bg-gray-200 rounded-md hover:bg-purple-500 hover:text-white transition"
           >
             {{ option }}
           </button>
         </div>
       </div>
 
-      <button @click="calculateResults" :disabled="answers.length < questions.length">
-        Get My Career Match!
-      </button>
+      <div class="text-center mt-6">
+        <button 
+          @click="calculateResults" 
+          :disabled="answers.length < questions.length"
+          class="bg-blue-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition disabled:opacity-50"
+        >
+          Get My Career Match!
+        </button>
+      </div>
     </div>
 
     <Results v-if="showResults" :scores="scores" @restart="restartQuiz" />
@@ -43,6 +59,7 @@ const questions = ref([
   { text: 'If you had to pick a lab partner, who would it be?' }
 ])
 
+const quizStarted = ref(false)
 const answers = ref([])
 const showResults = ref(false)
 
@@ -73,30 +90,10 @@ const calculateResults = () => {
 }
 
 const restartQuiz = () => {
+  quizStarted.value = false
   answers.value = []
   Object.keys(scores).forEach((key) => (scores[key] = 0))
   showResults.value = false
 }
 </script>
 
-<style scoped>
-.quiz-container {
-  max-width: 600px;
-  margin: auto;
-  text-align: center;
-}
-.question {
-  margin: 15px 0;
-}
-.options button {
-  margin: 5px;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.options .selected {
-  background-color: #42b983;
-  color: white;
-}
-</style>

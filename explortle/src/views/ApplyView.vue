@@ -14,19 +14,19 @@
 
 <style scoped>
 .container {
-  width: 80%; /* Adjust as needed */
+  width: 80%;
   max-width: 800px;
   margin: auto;
 }
 
 .embed-wrapper {
   width: 100%;
-  height: 60vh; /* Adjust the height as needed */
+  height: 60vh;
 }
 
 .responsive-iframe {
   width: 100%;
   height: 100%;
-  border: none; /* Remove default iframe border */
+  border: none;
 }
 </style>
