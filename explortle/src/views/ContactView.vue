@@ -1,27 +1,50 @@
 <template>
-  <main class="contact-main">
-    <div class="contact-us-form card">
-      <h2 class="text-5xl">Contact Us</h2>
-      <form @submit.prevent="submitForm">
+  <main class="bg-gray-100 flex items-center justify-center min-h-screen px-4">
+    <div class="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
+      <h2 class="text-4xl font-heading font-bold text-purple-600 text-center mb-6">Contact Us</h2>
+
+      <form @submit.prevent="submitForm" class="space-y-4">
         <div>
-          <label for="name" class="text-lg">Name:</label>
-          <input type="text" v-model="form.name" id="name" required />
+          <label for="name" class="block text-lg font-body text-gray-700">Name:</label>
+          <input 
+            type="text" 
+            v-model="form.name" 
+            id="name" 
+            required 
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-purple-300"
+          />
         </div>
 
         <div>
-          <label for="email" class="text-lg">Email:</label>
-          <input type="email" v-model="form.email" id="email" required />
+          <label for="email" class="block text-lg font-body text-gray-700">Email:</label>
+          <input 
+            type="email" 
+            v-model="form.email" 
+            id="email" 
+            required 
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-purple-300"
+          />
         </div>
 
         <div>
-          <label for="message" class="text-lg">Message:</label>
-          <textarea v-model="form.message" id="message" required></textarea>
+          <label for="message" class="block text-lg font-body text-gray-700">Message:</label>
+          <textarea 
+            v-model="form.message" 
+            id="message" 
+            required 
+            class="w-full p-3 border border-gray-300 rounded-lg min-h-[150px] focus:ring focus:ring-purple-300"
+          ></textarea>
         </div>
 
-        <button type="submit" class="button">Submit</button>
+        <button 
+          type="submit" 
+          class="w-full bg-blue-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition"
+        >
+          Submit
+        </button>
       </form>
-      <h1 :class="statusClass">{{ statusMessage }}</h1>
 
+      <p v-if="statusMessage" :class="statusClass" class="text-center font-body mt-4">{{ statusMessage }}</p>
     </div>
   </main>
 </template>
@@ -30,7 +53,6 @@
 import { ref, reactive } from 'vue';
 import emailjs from 'emailjs-com';
 
-// Reactive form state
 const form = reactive({
   name: '',    
   email: '',   
@@ -63,15 +85,15 @@ const submitForm = async () => {
     try {
       await sendContactForm();
       statusMessage.value = 'Your message has been sent successfully!';
-      statusClass.value = 'success';
+      statusClass.value = 'text-green-600 font-medium';
       resetForm();  
     } catch (error) {
       statusMessage.value = 'There was an error sending your message. Please try again later.';
-      statusClass.value = 'error';
+      statusClass.value = 'text-red-600 font-medium';
     }
   } else {
     statusMessage.value = 'Please fill in all required fields.';
-    statusClass.value = 'error';
+    statusClass.value = 'text-red-600 font-medium';
   }
 };
 
@@ -81,69 +103,3 @@ const resetForm = () => {
   form.message = '';
 };
 </script>
-
-
-<style scoped>
-.contact-main {
-  background-color: #f0f4ff; 
-  padding: 40px 0;
-}
-
-.contact-us-form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #e0e0e0; 
-  border-radius: 8px; 
-}
-
-textarea {
-  min-height: 150px;
-}
-
-button {
-  width: 100%;
-  padding: 15px;
-  background-color: #5a8dc8; 
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #4a7dc3; 
-}
-
-p.success {
-  color: green;
-}
-
-p.error {
-  color: red;
-}
-
-.text-lg {
-  font-size: 1.1em; 
-}
-
-.text-5xl {
-  font-size: 2.5em; 
-}
-
-.card {
-  background-color: white; 
-  border: 1px solid #e0e0e0; 
-  border-radius: 8px; 
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-}
-</style>
