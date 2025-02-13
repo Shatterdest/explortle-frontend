@@ -1,7 +1,8 @@
 <template>
-  <div class="container">
-    <div class="embed-wrapper">
-      <iframe class="responsive-iframe"
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <div class="w-full h-[70vh] rounded-lg shadow-md overflow-hidden">
+      <iframe
+        class="w-full h-full border-none"
         src="https://docs.google.com/forms/d/e/1FAIpQLSfafHDW0qFmP5fJLCF_W1R4lNSTYxM9OMSimMQ5KOprd1xzAA/viewform"
       >
         Loading…
@@ -9,24 +10,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts"></script>
-
-<style scoped>
-.container {
-  width: 80%;
-  max-width: 800px;
-  margin: auto;
-}
-
-.embed-wrapper {
-  width: 100%;
-  height: 60vh;
-}
-
-.responsive-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-</style>
