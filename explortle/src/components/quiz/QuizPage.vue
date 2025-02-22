@@ -55,16 +55,16 @@ import { ref, reactive } from 'vue'
 import Results from './ResultsPage.vue'
 
 const questions = ref([
-  { text: 'How do you feel about math?' },
-  { text: 'If your computer breaks, what’s your first move?' },
-  { text: 'How do you handle a group project?' },
-  { text: 'A robot uprising begins—what’s your role?' },
-  { text: 'You find a weird rock. What do you do?' },
+  { text: 'Are you good at math?' },
+  { text: 'If you computer works, how confident are you in fixing it?' },
+  { text: 'Do you handle group projects well?' },
+  { text: 'Are you good at "communicating" with computers?' },
+  { text: 'How curious are you about the physical world around you?' },
   { text: 'How do you feel about coding?' },
-  { text: "You're given a mystery box with wires sticking out. What's your reaction?" },
-  { text: 'How do you handle an all-nighter before a deadline?' },
-  { text: 'What’s your ideal way to spend a free afternoon?' },
-  { text: 'If you had to pick a lab partner, who would it be?' }
+  { text: "How eager are you to experiment with unfamiliar technology?" },
+  { text: 'Do you work efficiently during an all nighter before a deadline?' },
+  { text: 'How often do you spend free time doing hands-on activities (building, experimenting, fixing things)?' },
+  { text: 'Who would you rather work with, someone who works structured or spontaneously? ' }
 ])
 
 const quizStarted = ref(false)
