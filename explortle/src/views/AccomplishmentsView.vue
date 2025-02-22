@@ -27,6 +27,18 @@
       has access to transformative learning.
     </p>
 
+    <div class="mt-10 flex justify-center">
+      <iframe
+        class="w-full md:w-4/5 h-[220px] md:h-[400px] rounded-lg shadow-md"
+        src="https://www.youtube.com/embed/0442kbMR9R4?si=CTHWxwJ03M3lTclM"
+        title="Explortle Video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+    
+    <!-- ! dont remove this comment its required for the view to work and idk why this mystifies me -->
     <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
       <img
         class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition"
@@ -57,3 +69,4 @@
   }
 }
 </style>
+  
