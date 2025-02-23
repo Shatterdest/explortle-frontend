@@ -9,11 +9,53 @@ onMounted(() => {
   route.route[0].current = true
 })
 
-const members = ref([
-  { id: 1, name: 'Placeholder' },
-  { id: 2, name: 'Placeholder' },
-  { id: 3, name: 'Placeholder' }
-])
+const imageFiles = import.meta.glob('@/assets/imgs/slides/*.png', { eager: true })
+
+const images = ref(
+  Object.entries(imageFiles)
+    .map(([path, img]) => {
+      const match = path.match(/(\d+)\.png$/);
+      const number = match ? parseInt(match[1], 10) : 0;
+      return {
+        path,
+        src: (img as any).default,
+        number,
+      };
+    })
+    .sort((a, b) => a.number - b.number)
+    .map((img) => img.src)
+);
+
+const currentSlide = ref(0)
+const slidingDirection = ref<'next' | 'prev'>('next')
+
+let slideInterval: ReturnType<typeof setInterval> | null = null
+
+const startAutoSlide = () => {
+  slideInterval = setInterval(() => {
+    nextSlide()
+  }, 3000)
+}
+
+const stopAutoSlide = () => {
+  if (slideInterval) {
+    clearInterval(slideInterval)
+  }
+}
+
+const nextSlide = () => {
+  slidingDirection.value = 'next'
+  currentSlide.value = (currentSlide.value + 1) % images.value.length
+}
+
+const prevSlide = () => {
+  slidingDirection.value = 'prev'
+  currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length
+}
+
+onMounted(() => {
+  startAutoSlide()
+})
 </script>
 
 <template>
@@ -36,8 +78,36 @@ const members = ref([
       </div>
     </section>
 
-    <div class="flex justify-center py-10">
-      <img class="w-full max-w-3xl rounded-lg shadow-lg" src="../assets/imgs/things/us.jpg" alt="Explortle Team" />
+    <div class="relative w-full max-w-3xl mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-square group">
+      <div class="relative w-full h-full">
+        <transition :name="slidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
+          <img
+            v-if="images.length"
+            :key="currentSlide"
+            :src="images[currentSlide]"
+            alt="Explortle Event"
+            class="absolute w-full h-full object-cover"
+          />
+        </transition>
+      </div>
+
+      <button 
+        @click="prevSlide" 
+        @mouseover="stopAutoSlide" 
+        @mouseleave="startAutoSlide"
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+      >
+        ◀
+      </button>
+
+      <button 
+        @click="nextSlide" 
+        @mouseover="stopAutoSlide" 
+        @mouseleave="startAutoSlide"
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+      >
+        ▶
+      </button>
     </div>
 
     <section class="py-16 px-6">
@@ -46,14 +116,14 @@ const members = ref([
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <div class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
           <a target="_blank" href="https://www.acementor.org" class="block p-6 text-center">
-            <img class="mx-auto mb-4 max-h-24 rounded-md" src="../assets/imgs/ace.png" alt="ACE Mentor">
+            <img class="mx-auto mb-4 max-h-24 rounded-md" src="@/assets/imgs/ace.png" alt="ACE Mentor">
             <h3 class="text-2xl font-heading font-semibold text-gray-700">Architecture Construction Engineering Mentorship</h3>
           </a>
         </div>
 
         <div class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
           <a target="_blank" href="https://aiasiny.org" class="block p-6 text-center">
-            <img class="mx-auto mb-4 max-h-24 rounded-md" src="../assets/imgs/aia.png" alt="AIA Staten Island">
+            <img class="mx-auto mb-4 max-h-24 rounded-md" src="@/assets/imgs/aia.png" alt="AIA Staten Island">
             <h3 class="text-2xl font-heading font-semibold text-gray-700">American Institute of Architects Staten Island NY</h3>
           </a>
         </div>
@@ -74,5 +144,32 @@ const members = ref([
   to {
     opacity: 1;
   }
+}
+
+.slide-next-enter-active,
+.slide-next-leave-active,
+.slide-prev-enter-active,
+.slide-prev-leave-active {
+  transition: transform 0.7s ease-in-out;
+}
+
+.slide-next-enter-from {
+  transform: translateX(100%);
+}
+
+.slide-next-leave-to {
+  transform: translateX(-100%);
+}
+
+.slide-prev-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-prev-leave-to {
+  transform: translateX(100%);
+}
+
+.group:hover .opacity-0 {
+  transition: opacity 0.3s ease-in-out;
 }
 </style>
