@@ -36,8 +36,41 @@ const members = ref([
       </div>
     </section>
 
+<<<<<<< Updated upstream
     <div class="flex justify-center py-10">
       <img class="w-full max-w-3xl rounded-lg shadow-lg" src="../assets/imgs/things/us.jpg" alt="Explortle Team" />
+=======
+    <div 
+      class="relative w-full max-w-3xl mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-square group"
+      @mouseover="stopAutoSlide"
+      @mouseleave="startAutoSlide"
+    >
+      <div class="relative w-full h-full">
+        <transition :name="slidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
+          <img
+            v-if="images.length"
+            :key="currentSlide"
+            :src="images[currentSlide]"
+            alt="Explortle Event"
+            class="absolute w-full h-full object-cover"
+          />
+        </transition>
+      </div>
+
+      <button 
+        @click="prevSlide" 
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+      >
+        ◀
+      </button>
+
+      <button 
+        @click="nextSlide" 
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+      >
+        ▶
+      </button>
+>>>>>>> Stashed changes
     </div>
 
     <section class="py-16 px-6">
