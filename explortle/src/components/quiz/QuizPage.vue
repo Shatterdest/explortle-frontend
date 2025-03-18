@@ -138,6 +138,12 @@ const restartQuiz = () => {
 </script>
 
 <style scoped>
+.quiz-container {
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 1rem; 
+}
+
 .opacity-preview {
   filter: blur(1px);
   pointer-events: none;
@@ -155,6 +161,35 @@ const restartQuiz = () => {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .quiz-container {
+    max-width: 100vw; 
+    padding: 0.5rem;
+  }
+
+  .options {
+    gap: 2px; 
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    padding: 0 8px; 
+  }
+
+  .options button {
+    padding: 0.5rem 0.75rem; 
+    font-size: 0.875rem; 
+    flex-shrink: 0;
+  }
+
+  .options span {
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .question {
+    padding: 1rem; 
   }
 }
 </style>
