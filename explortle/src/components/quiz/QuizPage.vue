@@ -4,51 +4,73 @@
 
     <div v-if="!quizStarted" class="text-center mt-6">
       <button
-        @click="quizStarted = true"
+        @click="startQuiz"
         class="bg-purple-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition"
       >
         Start Quiz
       </button>
-    </div>
 
-    <div v-if="quizStarted && !showResults">
-      <div
-        v-for="(question, index) in questions"
-        :key="index"
-        class="question bg-gray-100 p-6 rounded-lg shadow-md my-4"
-      >
-        <p class="text-lg font-medium text-gray-700">{{ question.text }}</p>
-        <div class="options flex items-center justify-center gap-3 mt-4">
-          <span class="text-gray-500 text-sm">Disagree</span>
-
-          <button
-            v-for="option in [1, 2, 3, 4, 5]"
-            :key="option"
-            @click="selectAnswer(index, option)"
-            :class="{
-              'bg-purple-600 text-white': answers[index] === option,
-              'bg-gray-200 text-gray-800 hover:bg-purple-500 hover:text-white':
-                answers[index] !== option
-            }"
-            class="px-4 py-2 rounded-md transition"
-          >
-            {{ option }}
-          </button>
-
-          <span class="text-gray-500 text-sm">Agree</span>
+      <div class="mt-6">
+        <div
+          v-for="(question, index) in previewQuestions"
+          :key="index"
+          class="question bg-gray-100 p-6 rounded-lg shadow-md my-4 opacity-preview"
+          :style="{ opacity: 1 - index * 0.3 }"
+        >
+          <p class="text-lg font-medium text-gray-700">{{ question.text }}</p>
+          <div class="options flex items-center justify-center gap-3 mt-4">
+            <span class="text-gray-500 text-sm">Disagree</span>
+            <button
+              v-for="option in [1, 2, 3, 4, 5]"
+              :key="option"
+              class="px-4 py-2 rounded-md bg-gray-200 text-gray-800 opacity-50 cursor-not-allowed"
+            >
+              {{ option }}
+            </button>
+            <span class="text-gray-500 text-sm">Agree</span>
+          </div>
         </div>
       </div>
-
-      <div class="text-center mt-6">
-        <button
-          @click="calculateResults"
-          :disabled="answers.length < questions.length"
-          class="bg-blue-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition disabled:opacity-50"
-        >
-          Get My Career Match!
-        </button>
-      </div>
     </div>
+
+    <transition name="fade-in">
+      <div v-if="quizStarted && !showResults">
+        <div
+          v-for="(question, index) in questions"
+          :key="index"
+          class="question bg-gray-100 p-6 rounded-lg shadow-md my-4"
+        >
+          <p class="text-lg font-medium text-gray-700">{{ question.text }}</p>
+          <div class="options flex items-center justify-center gap-3 mt-4">
+            <span class="text-gray-500 text-sm">Disagree</span>
+            <button
+              v-for="option in [1, 2, 3, 4, 5]"
+              :key="option"
+              @click="selectAnswer(index, option)"
+              :class="{
+                'bg-purple-600 text-white': answers[index] === option,
+                'bg-gray-200 text-gray-800 hover:bg-purple-500 hover:text-white':
+                  answers[index] !== option
+              }"
+              class="px-4 py-2 rounded-md transition"
+            >
+              {{ option }}
+            </button>
+            <span class="text-gray-500 text-sm">Agree</span>
+          </div>
+        </div>
+
+        <div class="text-center mt-6">
+          <button
+            @click="calculateResults"
+            :disabled="answers.length < questions.length"
+            class="bg-blue-600 text-white text-lg font-medium px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition disabled:opacity-50"
+          >
+            Get My Career Match!
+          </button>
+        </div>
+      </div>
+    </transition>
 
     <Results v-if="showResults" :scores="scores" @restart="restartQuiz" />
   </div>
@@ -71,6 +93,8 @@ const questions = ref([
   { text: 'Who would you rather work with, someone structured or spontaneous?' }
 ])
 
+const previewQuestions = ref(questions.value.slice(0, 3))
+
 const quizStarted = ref(false)
 const answers = ref([])
 const showResults = ref(false)
@@ -82,6 +106,10 @@ const scores = reactive({
   math: 0,
   chaos: 0
 })
+
+const startQuiz = () => {
+  quizStarted.value = true
+}
 
 const selectAnswer = (index, value) => {
   answers.value[index] = value
@@ -108,3 +136,25 @@ const restartQuiz = () => {
   showResults.value = false
 }
 </script>
+
+<style scoped>
+.opacity-preview {
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.fade-in-enter-active {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
