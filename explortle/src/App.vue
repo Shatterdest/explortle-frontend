@@ -23,6 +23,10 @@ import NavBar from '@/components/NavBar.vue'
           <img class="w-12 h-12 rounded-lg shadow-md hover:shadow-lg" src="../src/assets/imgs/yt.png" alt="YouTube" />
         </a>
 
+        <a href="https://linktr.ee/explortle" target="_blank" class="transition-transform transform hover:scale-110">
+          <img class="w-12 h-12 rounded-lg shadow-md hover:shadow-lg" src="../src/assets/imgs/linktree.png" alt="YouTube" />
+        </a>
+
         <a href="https://gofund.me/d6bded80" target="_blank" class="transition-transform transform hover:scale-110">
           <img class="w-12 h-12 rounded-lg shadow-md hover:shadow-lg" src="../src/assets/imgs/gofundme.png" alt="GoFundMe" />
         </a>
