@@ -145,7 +145,7 @@ const restartQuiz = () => {
 }
 
 .opacity-preview {
-  filter: blur(1px);
+  filter: blur(.3px);
   pointer-events: none;
 }
 
