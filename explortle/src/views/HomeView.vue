@@ -14,17 +14,17 @@ const imageFiles = import.meta.glob('@/assets/imgs/slides/*.png', { eager: true 
 const images = ref(
   Object.entries(imageFiles)
     .map(([path, img]) => {
-      const match = path.match(/(\d+)\.png$/);
-      const number = match ? parseInt(match[1], 10) : 0;
+      const match = path.match(/(\d+)\.png$/)
+      const number = match ? parseInt(match[1], 10) : 0
       return {
         path,
         src: (img as any).default,
-        number,
-      };
+        number
+      }
     })
     .sort((a, b) => a.number - b.number)
     .map((img) => img.src)
-);
+)
 
 const currentSlide = ref(0)
 const slidingDirection = ref<'next' | 'prev'>('next')
@@ -69,21 +69,41 @@ onMounted(() => {
             professionals to conduct hands-on workshops in schools across New York City.
           </p>
           <p class="mt-4 text-lg leading-relaxed">
-            Our mission is to bridge the gap between students and career professionals
-            from diverse industries by offering immersive learning experiences.
+            Our mission is to bridge the gap between students and career professionals from diverse
+            industries by offering immersive learning experiences.
           </p>
         </div>
 
         <div class="mt-6">
-          <img 
-            src="@/assets/imgs/graphics/wide.png" 
-            alt="Explortle Graphic" 
+          <img
+            src="@/assets/imgs/graphics/wide.png"
+            alt="Explortle Graphic"
             class="w-full h-auto rounded-lg shadow-md"
           />
         </div>
 
+        <div class="mt-6">
+          <h3 class="text-2xl font-heading font-semibold text-purple-600 mb-2">
+            Watch Our Webinar
+          </h3>
+          <p class="text-lg leading-relaxed mb-4">
+            Our recent electrical engineering webinar with Jiayu, a student at NYU
+          </p>
+          <iframe
+            class="w-full"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/MAkU0thc_z4?si=J07SZxgnKTFi6M27"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+
         <div class="mt-6 flex justify-center">
-          <a 
+          <a
             href="/whatwedo"
             class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
           >
@@ -92,7 +112,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <div 
+      <div
         class="relative w-full rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-square group"
         @mouseover="stopAutoSlide"
         @mouseleave="startAutoSlide"
@@ -109,15 +129,15 @@ onMounted(() => {
           </transition>
         </div>
 
-        <button 
-          @click="prevSlide" 
+        <button
+          @click="prevSlide"
           class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
         >
           ◀
         </button>
 
-        <button 
-          @click="nextSlide" 
+        <button
+          @click="nextSlide"
           class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
         >
           ▶
@@ -126,20 +146,38 @@ onMounted(() => {
     </section>
 
     <section class="py-16 px-6">
-      <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">Associates</h2>
+      <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
+        Associates
+      </h2>
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <div class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+        <div
+          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
+        >
           <a target="_blank" href="https://www.acementor.org" class="block p-6 text-center">
-            <img class="mx-auto mb-4 max-h-24 rounded-md" src="@/assets/imgs/ace.png" alt="ACE Mentor">
-            <h3 class="text-2xl font-heading font-semibold text-gray-700">Architecture Construction Engineering Mentorship</h3>
+            <img
+              class="mx-auto mb-4 max-h-24 rounded-md"
+              src="@/assets/imgs/ace.png"
+              alt="ACE Mentor"
+            />
+            <h3 class="text-2xl font-heading font-semibold text-gray-700">
+              Architecture Construction Engineering Mentorship
+            </h3>
           </a>
         </div>
 
-        <div class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300">
+        <div
+          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
+        >
           <a target="_blank" href="https://aiasiny.org" class="block p-6 text-center">
-            <img class="mx-auto mb-4 max-h-24 rounded-md" src="@/assets/imgs/aia.png" alt="AIA Staten Island">
-            <h3 class="text-2xl font-heading font-semibold text-gray-700">American Institute of Architects Staten Island NY</h3>
+            <img
+              class="mx-auto mb-4 max-h-24 rounded-md"
+              src="@/assets/imgs/aia.png"
+              alt="AIA Staten Island"
+            />
+            <h3 class="text-2xl font-heading font-semibold text-gray-700">
+              American Institute of Architects Staten Island NY
+            </h3>
           </a>
         </div>
       </div>
@@ -152,9 +190,6 @@ onMounted(() => {
     </section>
   </main>
 </template>
-
-
-
 
 <style scoped>
 .fade-in {
