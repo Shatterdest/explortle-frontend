@@ -15,7 +15,7 @@ onMounted(async () => {
 <template>
   <div v-if="event" class="max-w-4xl mx-auto py-12 px-4">
     <router-link
-      to="/whatwedo"
+      :to="{ path: '/', hash: '#timeline' }"
       class="inline-block mb-6 text-purple-600 hover:text-purple-800 font-semibold transition"
     >
       ← Back to Timeline
