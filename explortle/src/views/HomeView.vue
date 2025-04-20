@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import QuizPage from '@/components/quiz/QuizPage.vue'
+import TimeLine from '@/components/TimeLine.vue'
 import { useRouteStore } from '@/stores/route'
 import { onMounted, ref } from 'vue'
 
@@ -82,32 +83,12 @@ onMounted(() => {
           />
         </div>
 
-        <div class="mt-6">
-          <h3 class="text-2xl font-heading font-semibold text-purple-600 mb-2">
-            Watch Our Webinar
-          </h3>
-          <p class="text-lg leading-relaxed mb-4">
-            Our recent electrical engineering webinar with Jiayu, a student at NYU
-          </p>
-          <iframe
-            class="w-full"
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/MAkU0thc_z4?si=J07SZxgnKTFi6M27"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-
         <div class="mt-6 flex justify-center">
           <a
-            href="/whatwedo"
+            href="#timeline"
             class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
           >
-            Discover What We Do →
+            See Our Story
           </a>
         </div>
       </div>
@@ -144,6 +125,7 @@ onMounted(() => {
         </button>
       </div>
     </section>
+    <TimeLine id="timeline" />
 
     <section class="py-16 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">

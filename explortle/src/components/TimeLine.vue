@@ -219,7 +219,6 @@ const getAnimationDelay = (index) => {
           <p class="text-xs text-purple-500 font-medium uppercase tracking-wider mb-1.5"> {{ new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) }}
           </p>
           <h2 class="text-lg font-semibold text-gray-800 mb-2">{{ event.title }}</h2>
-          <p class="text-sm text-gray-600 mt-1 mb-4 grow">{{ event.description }}</p>
           <router-link
             :to="`/event/${event.slug}`"
             class="text-purple-600 font-semibold hover:text-purple-800 mt-auto inline-block self-start transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 rounded"

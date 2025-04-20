@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import TimeLine from '@/components/TimeLine.vue'
 
 const isMobile = ref(window.innerWidth < 768)
 
@@ -140,7 +139,6 @@ onMounted(() => {
         </button>
       </div>
     </section>
-    <TimeLine />
     <div class="mt-10 flex justify-center px-6">
       <div class="relative w-full md:w-4/5 aspect-video">
         <iframe
