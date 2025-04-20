@@ -14,7 +14,7 @@ const login = async () => {
     localStorage.setItem('token', res.data.token)
     router.push('/dashboard')
   } catch (err) {
-    error.value = 'Invalid email or password'
+    error.value = 'Invalid user or password'
   }
 }
 </script>
