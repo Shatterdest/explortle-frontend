@@ -31,3 +31,6 @@ coverage
 
 */.vite/deps
 */.vite/cache
+
+*.env
+*/.env

@@ -22,7 +22,13 @@ const router = createRouter({
       name: 'whatwedo',
       component: AccomplishmentsView
     },
-    { path: '/apply', name: 'apply', component: ApplyView }
+    { path: '/apply', name: 'apply', component: ApplyView }, 
+    {
+      path: '/event/:slug',
+      name: 'EventDetail',
+      component: () => import('@/views/EventDetailView.vue')
+    }
+    
   ]
 })
 
