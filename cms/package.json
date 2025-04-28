@@ -14,7 +14,9 @@
     "tailwindcss": "^4.1.4",
     "vite": "^6.3.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-draggable-next": "^2.2.1",
+    "vue-router": "^4.0.3",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",

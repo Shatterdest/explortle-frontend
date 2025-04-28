@@ -1,31 +1,47 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import AdminEventForm from '../components/AdminEventForm.vue'
-import api from "../lib/api.js"
+import AdminEventForm from '../components/AdminEventForm.vue' 
+import api from "../lib/api.js" 
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const events = ref([])
-const selected = ref(null)
-const isCreating = ref(false)
+const selected = ref(null) 
+const isCreating = ref(false) 
 
 const fetchEvents = async () => {
-  const res = await api.get('/events')
-  events.value = res.data
+  try {
+    const res = await api.get('/events')
+    events.value = res.data
+  } catch (error) {
+    console.error('Error fetching events:', error);
+  }
 }
 
 const deleteEvent = async (id) => {
   if (confirm('Are you sure?')) {
-    await api.delete(`/events/${id}`)
-    await fetchEvents()
+    try {
+      await api.delete(`/events/${id}`)
+      await fetchEvents() 
+    } catch (error) {
+      console.error('Error deleting event:', error);
+    }
   }
 }
 
 const onSaved = async () => {
-  selected.value = null
-  isCreating.value = false
+  console.log('Form saved event received.');
+  selected.value = null 
+  isCreating.value = false 
   await fetchEvents()
 }
+
+const handleFormCancelled = () => {
+    console.log('Form cancelled event received.');
+    isCreating.value = false; 
+    selected.value = null; 
+}
+
 
 const logout = () => {
   localStorage.removeItem('token')
@@ -46,15 +62,19 @@ onMounted(fetchEvents)
         Logout
       </button>
     </div>
+
     <button
-      @click="isCreating = true"
+      @click="isCreating = true; selected = null"
       class="mb-6 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
     >
       ➕ New Event
     </button>
 
     <div v-if="isCreating || selected">
-      <AdminEventForm :event="selected" @saved="onSaved" />
+      <AdminEventForm
+        :event="selected"
+        @saved="onSaved"
+        @cancelled="handleFormCancelled" />
     </div>
 
     <table class="w-full text-left border mt-4">
@@ -70,8 +90,7 @@ onMounted(fetchEvents)
           <td class="p-2">{{ event.title }}</td>
           <td class="p-2">{{ new Date(event.date).toLocaleDateString() }}</td>
           <td class="p-2 space-x-2">
-            <button @click="selected = event" class="text-blue-600 hover:underline">Edit</button>
-            <button @click="deleteEvent(event._id)" class="text-red-600 hover:underline">
+            <button @click="selected = event; isCreating = false" class="text-blue-600 hover:underline">Edit</button> <button @click="deleteEvent(event._id)" class="text-red-600 hover:underline">
               Delete
             </button>
           </td>
