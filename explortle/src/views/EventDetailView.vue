@@ -25,8 +25,12 @@ onMounted(async () => {
     <p class="text-lg text-gray-700 mb-4">{{ event.description }}</p>
 
     <p class="text-md text-gray-600 mb-2"><strong>Location:</strong> {{ event.location }}</p>
-    <p v-show="event.speakers[0] != ''" class="text-md text-gray-600 mb-4"><strong>Speakers:</strong> {{ event.speakers.join(', ') }}</p>
-
+    <p
+      v-show="event.speakers && event.speakers.join(', ') != ''"
+      class="text-md text-gray-600 mb-4"
+    >
+      <strong>Speakers:</strong> {{ event.speakers.join(', ') }}
+    </p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
       <img
         v-for="(img, i) in event.imageUrls"
@@ -38,7 +42,5 @@ onMounted(async () => {
     </div>
   </div>
 
-  <div v-else class="text-center py-20 text-gray-500 text-lg">
-    Loading event...
-  </div>
+  <div v-else class="text-center py-20 text-gray-500 text-lg">Loading event...</div>
 </template>
