@@ -129,7 +129,7 @@ onMounted(() => {
 
     <section class="py-16 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
-        Associates
+        We've hosted workshops with these organizations: 
       </h2>
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
