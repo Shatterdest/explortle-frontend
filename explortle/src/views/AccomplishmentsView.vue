@@ -139,6 +139,44 @@ onMounted(() => {
         </button>
       </div>
     </section>
+    <section class="py-16 px-6">
+      <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
+        We've hosted workshops with these organizations:
+      </h2>
+
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div
+          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
+        >
+          <a target="_blank" href="https://www.acementor.org" class="block p-6 text-center">
+            <img
+              class="mx-auto mb-4 max-h-24 rounded-md"
+              src="@/assets/imgs/ace.png"
+              alt="ACE Mentor"
+            />
+            <h3 class="text-2xl font-heading font-semibold text-gray-700">
+              Architecture Construction Engineering Mentorship
+            </h3>
+          </a>
+        </div>
+
+        <div
+          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
+        >
+          <a target="_blank" href="https://aiasiny.org" class="block p-6 text-center">
+            <img
+              class="mx-auto mb-4 max-h-24 rounded-md"
+              src="@/assets/imgs/aia.png"
+              alt="AIA Staten Island"
+            />
+            <h3 class="text-2xl font-heading font-semibold text-gray-700">
+              American Institute of Architects Staten Island NY
+            </h3>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <div class="mt-10 flex justify-center px-6">
       <div class="relative w-full md:w-4/5 aspect-video">
         <iframe
