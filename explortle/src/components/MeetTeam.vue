@@ -5,8 +5,18 @@ const team = ref([
   { name: 'Audrey Kim', role: 'Co-founder', img: '' },
   { name: 'Ashley Li', role: 'Co-founder', img: '' },
   { name: 'Rita Hu', role: 'Outreach Lead', img: '' },
-  { name: 'Daniel Kim', role: 'Technical Director', img: '' },
-  { name: 'Sophia Nguyen', role: 'Outreach Manager', img: '' }
+  { name: 'Megan Liang', role: 'Outreach Lead', img: '' },
+  {
+    name: 'Tiffany He',
+    role: 'Event Coordinator Lead',
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746931332/IMG_6217_tlkjbb.webp'
+  },
+  {
+    name: 'Ocean Lin',
+    role: 'Event Coordinator',
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746931063/CF222D93-011A-41A3-84C8-D638131E77F9_nvra7e.jpg'
+  },
+  { name: 'Yi Xia', role: 'Web Development', img: '' }
 ])
 </script>
 
@@ -23,10 +33,12 @@ const team = ref([
         class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center transition hover:-translate-y-1 hover:shadow-lg"
       >
         <div
-          class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-gray-400 text-xl font-semibold"
+          class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-gray-400 text-xl font-semibold overflow-hidden"
         >
-          Img
+          <img v-if="member.img" :src="member.img" alt="" class="w-full h-full object-cover" />
+           <img v-else src="https://res.cloudinary.com/dbja1kd6e/image/upload/v1746932847/blank-profile-picture-973460_1280_fuq7aw.png" alt="">
         </div>
+
         <h2 class="text-xl font-heading font-semibold text-gray-800">{{ member.name }}</h2>
         <p class="text-purple-600 font-medium mt-1">{{ member.role }}</p>
       </div>
