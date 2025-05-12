@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 
 const team = ref([
-  { name: 'Audrey Kim', role: 'Co-founder', img: '' },
+  { name: 'Audrey Kim', role: 'Co-founder', img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015403/494831010_1437514974296913_8375346474725361787_n.jpg_neaqyr.jpg' },
   { name: 'Ashley Li', role: 'Co-founder', img: '' },
   { name: 'Rita Hu', role: 'Outreach Lead', img: '' },
   { name: 'Megan Liang', role: 'Outreach Lead', img: '' },
@@ -15,6 +15,10 @@ const team = ref([
     name: 'Ocean Lin',
     role: 'Event Coordinator',
     img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746931063/CF222D93-011A-41A3-84C8-D638131E77F9_nvra7e.jpg'
+  },
+  {name: 'Binting Chen', 
+    role: 'Social Media Lead', 
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015355/IMG_3217_qv04ku.webp'
   },
   { name: 'Yi Xia', role: 'Web Development', img: '' }
 ])
