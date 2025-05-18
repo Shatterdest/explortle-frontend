@@ -111,7 +111,7 @@ onMounted(() => {
           </p>
           <p class="mt-4 text-lg leading-relaxed">
             Our initiative has already engaged over
-            <span class="font-semibold text-blue-600">500 students</span> and featured
+            <span class="font-semibold text-blue-600">785+ students</span>, delivered <span class="font-semibold text-blue-600">235 STEM kits</span>, and featured
             <span class="font-semibold text-blue-600">six distinguished speakers</span> from various
             technical backgrounds.
           </p>
