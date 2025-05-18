@@ -84,13 +84,19 @@ onMounted(() => {
           />
         </div>
 
-        <div class="mt-6 flex justify-center">
+        <div class="mt-6 flex justify-center flex-wrap gap-4">
           <a
             href="#timeline"
             class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
           >
             See Our Story
           </a>
+          <router-link
+            to="/whatwedo/#orgs"
+            class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
+          >
+            Partners
+          </router-link>
         </div>
       </div>
 

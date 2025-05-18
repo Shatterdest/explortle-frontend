@@ -1,6 +1,43 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
+const accomplishments = [
+  {
+    name: 'Google',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547804/google-logo-transparent-background-free-png_crewre.png',
+    link: 'https://www.google.com'
+  },
+  {
+    name: 'New York University',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547672/Nyu-Logo-PNG-File_paatss.png',
+    link: 'https://www.nyu.edu'
+  },
+  {
+    name: 'Architecture Construction Engineering Mentorship',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/ace_kuq1ug.png',
+    link: 'https://www.acementor.org'
+  },
+  {
+    name: 'American Institute of Architects Staten Island NY',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/aia_mgx9pk.png',
+    link: 'https://aiasiny.org'
+  },
+  {
+    name: 'Staten Island Technical High School',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547755/114812-30708864-cc30-4eeb-8975-6e7ff636fbd4-removebg-preview_c32fpv.png',
+    link: 'https://www.siths.org'
+  },
+  {
+    name: 'DI Group Architecture',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547919/cropped-DIGroupArchitecture_Tagline_Full_Color-01-6-1024x252_bxks5i.webp',
+    link: 'https://www.digrouparchitecture.com'
+  },
+  {
+    name: 'LEAP Academy',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747548087/Screenshot_40-removebg-preview-removebg-preview_d76tjr.png',
+    link: 'https://www.yourleapforward.com'
+  }
+]
 const isMobile = ref(window.innerWidth < 768)
 
 const updateScreenSize = () => {
@@ -139,38 +176,21 @@ onMounted(() => {
         </button>
       </div>
     </section>
-    <section class="py-16 px-6">
+    <section id="orgs" class="py-16 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
         We've hosted workshops with these organizations:
       </h2>
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <div
+          v-for="a in accomplishments"
+          :key="a.name"
           class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
         >
-          <a target="_blank" href="https://www.acementor.org" class="block p-6 text-center">
-            <img
-              class="mx-auto mb-4 max-h-24 rounded-md"
-              src="@/assets/imgs/ace.png"
-              alt="ACE Mentor"
-            />
+          <a target="_blank" :href="a.link" class="block p-6 text-center">
+            <img class="mx-auto mb-4 max-h-24 rounded-md" :src="a.path" :alt="a.name" />
             <h3 class="text-2xl font-heading font-semibold text-gray-700">
-              Architecture Construction Engineering Mentorship
-            </h3>
-          </a>
-        </div>
-
-        <div
-          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
-        >
-          <a target="_blank" href="https://aiasiny.org" class="block p-6 text-center">
-            <img
-              class="mx-auto mb-4 max-h-24 rounded-md"
-              src="@/assets/imgs/aia.png"
-              alt="AIA Staten Island"
-            />
-            <h3 class="text-2xl font-heading font-semibold text-gray-700">
-              American Institute of Architects Staten Island NY
+              {{ a.name }}
             </h3>
           </a>
         </div>

@@ -2,25 +2,42 @@
 import { ref } from 'vue'
 
 const team = ref([
-  { name: 'Audrey Kim', role: 'Co-founder', img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015403/494831010_1437514974296913_8375346474725361787_n.jpg_neaqyr.jpg' },
-  { name: 'Ashley Li', role: 'Co-founder', img: '' },
+  {
+    name: 'Audrey Kim',
+    role: 'Co-founder',
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015403/494831010_1437514974296913_8375346474725361787_n.jpg_neaqyr.jpg'
+  },
+  {
+    name: 'Ashley Li',
+    role: 'Co-founder',
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547111/Screenshot_39_xgrmin.png'
+  },
   { name: 'Rita Hu', role: 'Outreach Lead', img: '' },
   { name: 'Megan Liang', role: 'Outreach Lead', img: '' },
   {
+    name: 'Binting Chen',
+    role: 'Social Media Lead',
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015355/IMG_3217_qv04ku.webp'
+  },
+  { name: 'Kennix Li', role: 'Social Media Manager', img: '' },
+  { name: 'Serena Zhou', role: 'Social Media Manager', img: '' },
+  {
     name: 'Tiffany He',
     role: 'Event Coordinator Lead',
-    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746931332/IMG_6217_tlkjbb.webp'
+    img: ''
   },
   {
     name: 'Ocean Lin',
     role: 'Event Coordinator',
     img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746931063/CF222D93-011A-41A3-84C8-D638131E77F9_nvra7e.jpg'
   },
-  {name: 'Binting Chen', 
-    role: 'Social Media Lead', 
-    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015355/IMG_3217_qv04ku.webp'
-  },
-  { name: 'Yi Xia', role: 'Web Development', img: '' }
+  { name: 'Philijoy Li', role: 'Event Coordinator', img: '' },
+  { name: 'Eric Huang', role: 'Event Coordinator', img: '' },
+  { name: 'Hui Lin (Michelle) Liu', role: 'Event Coordinator', img: '' },
+  { name: 'Winnie Wu', role: 'Fundraising', img: '' },
+  { name: 'Jiaxuan Lin', role: 'Fundraising', img: '' },
+  {name: 'Winnie Rong', role: 'Secretary', img:''},
+  { name: 'Yi Xia', role: 'Web Development', img: '' },
 ])
 </script>
 
@@ -40,7 +57,11 @@ const team = ref([
           class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-gray-400 text-xl font-semibold overflow-hidden"
         >
           <img v-if="member.img" :src="member.img" alt="" class="w-full h-full object-cover" />
-           <img v-else src="https://res.cloudinary.com/dbja1kd6e/image/upload/v1746932847/blank-profile-picture-973460_1280_fuq7aw.png" alt="">
+          <img
+            v-else
+            src="https://res.cloudinary.com/dbja1kd6e/image/upload/v1746932847/blank-profile-picture-973460_1280_fuq7aw.png"
+            alt=""
+          />
         </div>
 
         <h2 class="text-xl font-heading font-semibold text-gray-800">{{ member.name }}</h2>
