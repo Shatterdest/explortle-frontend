@@ -181,7 +181,7 @@ onMounted(() => {
         We've hosted workshops with these organizations:
       </h2>
 
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-4 gap-6 w-5/6 mx-auto">
         <div
           v-for="a in accomplishments"
           :key="a.name"
