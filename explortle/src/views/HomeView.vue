@@ -97,6 +97,12 @@ onMounted(() => {
           >
             Partners
           </router-link>
+          <a
+            href="#meetteam"
+            class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
+          >
+            Team Members
+          </a>
         </div>
       </div>
 
