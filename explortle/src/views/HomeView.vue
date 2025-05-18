@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import QuizPage from '@/components/quiz/QuizPage.vue'
 import TimeLine from '@/components/TimeLine.vue'
+import MeetTeam from '@/components/MeetTeam.vue'
 import { useRouteStore } from '@/stores/route'
 import { onMounted, ref } from 'vue'
 
@@ -83,13 +84,19 @@ onMounted(() => {
           />
         </div>
 
-        <div class="mt-6 flex justify-center">
+        <div class="mt-6 flex justify-center flex-wrap gap-4">
           <a
             href="#timeline"
             class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
           >
             See Our Story
           </a>
+          <router-link
+            to="/whatwedo/#orgs"
+            class="inline-block bg-purple-600 text-white font-medium text-lg px-6 py-3 rounded-lg shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
+          >
+            Partners
+          </router-link>
         </div>
       </div>
 
@@ -126,45 +133,7 @@ onMounted(() => {
       </div>
     </section>
     <TimeLine id="timeline" />
-
-    <section class="py-16 px-6">
-      <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
-        We've hosted workshops with these organizations: 
-      </h2>
-
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        <div
-          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
-        >
-          <a target="_blank" href="https://www.acementor.org" class="block p-6 text-center">
-            <img
-              class="mx-auto mb-4 max-h-24 rounded-md"
-              src="@/assets/imgs/ace.png"
-              alt="ACE Mentor"
-            />
-            <h3 class="text-2xl font-heading font-semibold text-gray-700">
-              Architecture Construction Engineering Mentorship
-            </h3>
-          </a>
-        </div>
-
-        <div
-          class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
-        >
-          <a target="_blank" href="https://aiasiny.org" class="block p-6 text-center">
-            <img
-              class="mx-auto mb-4 max-h-24 rounded-md"
-              src="@/assets/imgs/aia.png"
-              alt="AIA Staten Island"
-            />
-            <h3 class="text-2xl font-heading font-semibold text-gray-700">
-              American Institute of Architects Staten Island NY
-            </h3>
-          </a>
-        </div>
-      </div>
-    </section>
-
+    <MeetTeam id="meetteam" class="my-8" />
     <section class="container mx-auto px-6 py-12">
       <div class="bg-gray-100 rounded-lg shadow-md p-8 w-full">
         <QuizPage />

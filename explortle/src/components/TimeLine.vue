@@ -11,8 +11,8 @@ const fetchError = ref(null);
 const config = reactive({
   cardWidth: 288,
   cardHeight: 190, 
-  horizontalPadding: 56, 
-  verticalPadding: 110, 
+  horizontalPadding: 20, 
+  verticalPadding: 70, 
   containerPaddingX: 16,
   containerPaddingY: 64,
   svgOffsetTop: 90, 
@@ -235,11 +235,12 @@ const getAnimationDelay = (index) => {
         preserveAspectRatio="none"
       >
         <g :transform="`translate(0, ${config.containerPaddingY - config.svgOffsetTop})`">
+          <div></div>
          <path
             v-for="(event, index) in linkableEvents"
             :key="'line-' + event._id"
             :d="generateSerpentinePath(index)"
-            class="timeline-path stroke-purple-400 stroke-[2.5] fill-none" v-if="generateSerpentinePath(index)"
+            class="timeline-path stroke-purple-400 stroke-[2.5] fill-none"
              :style="{ animationDelay: getAnimationDelay(index + 0.5) }" />
         </g>
       </svg>
