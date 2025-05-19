@@ -196,7 +196,7 @@ const getAnimationDelay = (index) => {
     </div>
 
     <div v-if="fetchError" class="text-center text-red-700 bg-red-100 border border-red-300 rounded-lg p-6 max-w-lg mx-auto shadow-md">
-        <h3 class="font-semibold text-lg mb-2">Oops! Something went wrong.</h3>
+        <h2 class="font-semibold text-lg mb-2">Oops! Something went wrong.</h2>
         <p>{{ fetchError }}</p>
         <p class="mt-3 text-sm">Please try refreshing the page.</p>
     </div>

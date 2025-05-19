@@ -12,7 +12,7 @@ import NavBar from '@/components/NavBar.vue'
     </main>
 
     <footer class="bg-gray-100 text-center py-8 px-6 rounded-t-lg shadow-md">
-      <h3 class="text-xl font-heading font-semibold text-gray-700 mb-4">Support Our Mission & Stay Connected!</h3>
+      <h2 class="text-xl font-heading font-semibold text-gray-700 mb-4">Support Our Mission & Stay Connected!</h2>
 
       <div class="flex justify-center gap-6">
         <a href="https://www.instagram.com/explortle/" target="_blank" class="transition-transform transform hover:scale-110">
@@ -24,7 +24,7 @@ import NavBar from '@/components/NavBar.vue'
         </a>
 
         <a href="https://linktr.ee/explortle" target="_blank" class="transition-transform transform hover:scale-110">
-          <img class="w-12 h-12 rounded-lg shadow-md hover:shadow-lg" src="../src/assets/imgs/linktree.png" alt="YouTube" />
+          <img class="w-12 h-12 rounded-lg shadow-md hover:shadow-lg" src="../src/assets/imgs/linktree.png" alt="LinkTree" />
         </a>
 
         <a href="https://gofund.me/d6bded80" target="_blank" class="transition-transform transform hover:scale-110">

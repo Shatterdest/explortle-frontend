@@ -79,7 +79,7 @@ onMounted(() => {
         <div class="mt-6">
           <img
             src="@/assets/imgs/graphics/wide.png"
-            alt="Explortle Graphic"
+            alt="Explortle"
             class="w-full h-auto rounded-lg shadow-md"
           />
         </div>
