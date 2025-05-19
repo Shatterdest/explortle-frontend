@@ -19,8 +19,9 @@ const team = ref([
     role: 'Social Media Lead',
     img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015355/IMG_3217_qv04ku.webp'
   },
-  { name: 'Kennix Li', role: 'Social Media Manager', img: '' },
-  { name: 'Serena Zhou', role: 'Social Media Manager', img: '' },
+  { name: 'Kennix Li', role: 'Social Media', img: '' },
+  { name: 'Serena Zhou', role: 'Social Media', img: '' },
+  {name: 'Jasmina Marupova', role: 'Social Media', img: ''},
   {
     name: 'Tiffany He',
     role: 'Event Coordinator Lead',
