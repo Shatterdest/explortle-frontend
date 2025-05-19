@@ -21,7 +21,7 @@ const team = ref([
   },
   { name: 'Kennix Li', role: 'Social Media', img: '' },
   { name: 'Serena Zhou', role: 'Social Media', img: '' },
-  {name: 'Jasmina Marupova', role: 'Social Media', img: ''},
+  { name: 'Jasmina Marupova', role: 'Social Media', img: '' },
   {
     name: 'Tiffany He',
     role: 'Event Coordinator Lead',
