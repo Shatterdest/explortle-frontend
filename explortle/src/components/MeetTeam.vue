@@ -37,8 +37,9 @@ const team = ref([
   { name: 'Hui Lin (Michelle) Liu', role: 'Event Coordinator', img: '' },
   { name: 'Winnie Wu', role: 'Fundraising', img: '' },
   { name: 'Jiaxuan Lin', role: 'Fundraising', img: '' },
-  {name: 'Winnie Rong', role: 'Secretary', img:''},
-  { name: 'Yi Xia', role: 'Web Development', img: '' },
+  { name: 'Mandy Chen', role: 'Fundraising', img: '' },
+  { name: 'Winnie Rong', role: 'Secretary', img: '' },
+  { name: 'Yi Xia', role: 'Web Development', img: '' }
 ])
 </script>
 
