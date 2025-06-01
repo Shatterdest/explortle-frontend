@@ -54,7 +54,43 @@ const prevSlide = () => {
   slidingDirection.value = 'prev'
   currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length
 }
-
+const accomplishments = [
+  {
+    name: 'Google',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547804/google-logo-transparent-background-free-png_crewre.png',
+    link: 'https://www.google.com'
+  },
+  {
+    name: 'New York University',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547672/Nyu-Logo-PNG-File_paatss.png',
+    link: 'https://www.nyu.edu'
+  },
+  {
+    name: 'Architecture Construction Engineering Mentorship',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/ace_kuq1ug.png',
+    link: 'https://www.acementor.org'
+  },
+  {
+    name: 'American Institute of Architects Staten Island NY',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/aia_mgx9pk.png',
+    link: 'https://aiasiny.org'
+  },
+  {
+    name: 'Staten Island Technical High School',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547755/114812-30708864-cc30-4eeb-8975-6e7ff636fbd4-removebg-preview_c32fpv.png',
+    link: 'https://www.siths.org'
+  },
+  {
+    name: 'DI Group Architecture',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547919/cropped-DIGroupArchitecture_Tagline_Full_Color-01-6-1024x252_bxks5i.webp',
+    link: 'https://www.digrouparchitecture.com'
+  },
+  {
+    name: 'LEAP Academy',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747548087/Screenshot_40-removebg-preview-removebg-preview_d76tjr.png',
+    link: 'https://www.yourleapforward.com'
+  }
+]
 onMounted(() => {
   startAutoSlide()
 })
@@ -72,7 +108,12 @@ onMounted(() => {
           </p>
           <p class="mt-4 text-lg leading-relaxed">
             Our mission is to bridge the gap between students and career professionals from diverse
-            industries by offering immersive learning experiences.
+            industries by offering immersive learning experiences. Our initiative has already
+            engaged over
+            <span class="font-semibold text-blue-600">785+ students</span>, delivered
+            <span class="font-semibold text-blue-600">235 STEM kits</span>, and featured
+            <span class="font-semibold text-blue-600">six distinguished speakers</span> from various
+            technical backgrounds.
           </p>
         </div>
 
@@ -138,6 +179,45 @@ onMounted(() => {
         </button>
       </div>
     </section>
+    <section class="bg-gray-100 py-16 mt-16">
+  <div class="container mx-auto">
+    <h2 class="text-3xl md:text-4xl font-heading font-bold text-purple-600 mb-10 text-center">
+      We've hosted workshops with:
+    </h2>
+    <div class="overflow-hidden">
+      <div class="partner-track animate-slide">
+        <template v-for="(org) in accomplishments" :key="org">
+          <a
+            :href="org.link"
+            target="_blank"
+            class="inline-block mx-10 transition-transform hover:scale-110"
+          >
+            <img
+              :src="org.path"
+              :alt="org.name"
+              class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
+            />
+          </a>
+        </template>
+        <template v-for="(org) in accomplishments" :key="org">
+          <a
+            :href="org.link"
+            target="_blank"
+            class="inline-block mx-10 transition-transform hover:scale-110"
+          >
+            <img
+              :src="org.path"
+              :alt="org.name"
+              class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
+            />
+          </a>
+        </template>
+      </div>
+    </div>
+  </div>
+</section>
+
+
     <TimeLine id="timeline" />
     <MeetTeam id="meetteam" class="my-8" />
     <section class="container mx-auto px-6 py-12">
@@ -188,4 +268,24 @@ onMounted(() => {
 .group:hover .opacity-0 {
   transition: opacity 0.3s ease-in-out;
 }
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  display: flex;
+  animation: slide 30s linear infinite;
+}
+
+.partner-track {
+  display: inline-flex;
+  min-width: 200%;
+}
+
 </style>

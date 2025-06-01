@@ -100,7 +100,7 @@ onMounted(() => {
 
 <template>
   <main class="bg-white text-gray-800 font-body">
-    <section class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section class="container mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="bg-gray-100 rounded-lg shadow-md p-8 flex flex-col justify-between relative">
         <div>
           <h2 class="text-4xl font-heading font-bold text-purple-600 mb-4">Explortle Impact</h2>
@@ -145,7 +145,7 @@ onMounted(() => {
       </div>
 
       <div
-        class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[512/640] group"
+  class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
         @mouseover="stopAutoSlide"
         @mouseleave="startAutoSlide"
       >
@@ -176,7 +176,7 @@ onMounted(() => {
         </button>
       </div>
     </section>
-    <section id="orgs" class="py-16 px-6">
+    <section id="orgs" class="py-10 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
         We've hosted workshops with these organizations:
       </h2>
