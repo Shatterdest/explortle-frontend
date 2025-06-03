@@ -27,8 +27,12 @@ const router = createRouter({
       path: '/event/:slug',
       name: 'EventDetail',
       component: () => import('@/views/EventDetailView.vue')
+    }, 
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/NotFound.vue')
     }
-    
   ], 
   scrollBehavior(to) {
     if (to.hash) {

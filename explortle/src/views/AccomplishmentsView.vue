@@ -99,7 +99,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="bg-white text-gray-800 font-body">
+  <main class="text-gray-800 font-body">
     <section class="container mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="bg-gray-100 rounded-lg shadow-md p-8 flex flex-col justify-between relative">
         <div>
@@ -176,7 +176,7 @@ onMounted(() => {
         </button>
       </div>
     </section>
-    <section id="orgs" class="py-10 px-6">
+    <section id="orgs" class="bg-white py-10 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
         We've hosted workshops with these organizations:
       </h2>

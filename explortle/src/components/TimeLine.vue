@@ -188,7 +188,7 @@ const getAnimationDelay = (index) => {
 </script>
 
 <template>
-  <div class="relative overflow-x-hidden px-4 py-16 bg-gradient-to-b from-gray-50 to-purple-50"> <h1 class="text-4xl md:text-5xl font-heading font-bold text-center text-purple-700 mb-20"> Timeline of Events
+  <div class="bg-purple-200 relative overflow-x-hidden px-4 py-16 bg-gradient-to-b from-gray-50 to-purple-50"> <h1 class="text-4xl md:text-5xl font-heading font-bold text-center text-purple-700 mb-20"> Timeline of Events
     </h1>
 
     <div v-if="isLoading" class="flex justify-center items-center min-h-[200px]">

@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-purple-600 shadow-lg fixed top-0 left-0 w-full z-50 h-16 md:h-20 flex items-center">
+  <nav class="bg-purple-500 shadow-lg fixed top-0 left-0 w-full z-50 h-16 md:h-20 flex items-center">
     <div class="container mx-auto flex items-center justify-between px-4">
       <a href="/" class="flex items-center space-x-3">
         <img class="h-10 md:h-12 rounded-md" src="../assets/imgs/explortle.png" alt="Explortle Logo" />

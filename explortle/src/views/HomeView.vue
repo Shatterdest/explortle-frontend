@@ -97,9 +97,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="bg-white text-gray-800 font-body">
+  <main class="text-gray-800 font-body">
     <section class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="bg-gray-100 rounded-lg shadow-md p-8 flex flex-col justify-between">
+      <div class="bg-white rounded-lg shadow-md p-8 flex flex-col justify-between">
         <div>
           <h2 class="text-4xl font-heading font-bold text-purple-600 mb-4">About Us</h2>
           <p class="text-lg leading-relaxed">
@@ -180,46 +180,45 @@ onMounted(() => {
       </div>
     </section>
     <section class="bg-gray-100 py-16 mt-16">
-  <div class="container mx-auto">
-    <h2 class="text-3xl md:text-4xl font-heading font-bold text-purple-600 mb-10 text-center">
-      We've hosted workshops with:
-    </h2>
-    <div class="overflow-hidden">
-      <div class="partner-track animate-slide">
-        <template v-for="(org) in accomplishments" :key="org">
-          <a
-            :href="org.link"
-            target="_blank"
-            class="inline-block mx-10 transition-transform hover:scale-110"
-          >
-            <img
-              :src="org.path"
-              :alt="org.name"
-              class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
-            />
-          </a>
-        </template>
-        <template v-for="(org) in accomplishments" :key="org">
-          <a
-            :href="org.link"
-            target="_blank"
-            class="inline-block mx-10 transition-transform hover:scale-110"
-          >
-            <img
-              :src="org.path"
-              :alt="org.name"
-              class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
-            />
-          </a>
-        </template>
+      <div class="container mx-auto">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-purple-600 mb-10 text-center">
+          We've hosted workshops with:
+        </h2>
+        <div class="overflow-hidden">
+          <div class="partner-track animate-slide">
+            <template v-for="org in accomplishments" :key="org">
+              <a
+                :href="org.link"
+                target="_blank"
+                class="inline-block mx-10 transition-transform hover:scale-110"
+              >
+                <img
+                  :src="org.path"
+                  :alt="org.name"
+                  class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
+                />
+              </a>
+            </template>
+            <template v-for="org in accomplishments" :key="org">
+              <a
+                :href="org.link"
+                target="_blank"
+                class="inline-block mx-10 transition-transform hover:scale-110"
+              >
+                <img
+                  :src="org.path"
+                  :alt="org.name"
+                  class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
+                />
+              </a>
+            </template>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <TimeLine id="timeline" />
-    <MeetTeam id="meetteam" class="my-8" />
+    <MeetTeam id="meetteam" class="bg-purple-50 rounded-3xl my-8" />
     <section class="container mx-auto px-6 py-12">
       <div class="bg-gray-100 rounded-lg shadow-md p-8 w-full">
         <QuizPage />
@@ -287,5 +286,4 @@ onMounted(() => {
   display: inline-flex;
   min-width: 200%;
 }
-
 </style>
