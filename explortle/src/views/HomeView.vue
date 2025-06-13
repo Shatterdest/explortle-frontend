@@ -184,26 +184,14 @@ onMounted(() => {
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-purple-600 mb-10 text-center">
           We've hosted workshops with:
         </h2>
+
         <div class="overflow-hidden">
-          <div class="partner-track animate-slide">
-            <template v-for="org in accomplishments" :key="org">
+          <div class="partner-track animate-slide whitespace-nowrap">
+            <template v-for="(org, index) in accomplishments.concat(accomplishments)" :key="index">
               <a
                 :href="org.link"
                 target="_blank"
-                class="inline-block mx-10 transition-transform hover:scale-110"
-              >
-                <img
-                  :src="org.path"
-                  :alt="org.name"
-                  class="h-24 md:h-32 w-auto max-h-40 object-contain rounded-lg shadow-lg"
-                />
-              </a>
-            </template>
-            <template v-for="org in accomplishments" :key="org">
-              <a
-                :href="org.link"
-                target="_blank"
-                class="inline-block mx-10 transition-transform hover:scale-110"
+                class="inline-block px-6 transition-transform hover:scale-110"
               >
                 <img
                   :src="org.path"
@@ -277,13 +265,13 @@ onMounted(() => {
   }
 }
 
+.partner-track {
+  display: flex;
+  width: max-content;
+  animation: slide 30s linear infinite;
+}
 .animate-slide {
   display: flex;
   animation: slide 30s linear infinite;
-}
-
-.partner-track {
-  display: inline-flex;
-  min-width: 200%;
 }
 </style>
