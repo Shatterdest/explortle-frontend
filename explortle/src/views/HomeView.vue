@@ -71,9 +71,9 @@ const accomplishments = [
     link: 'https://www.acementor.org'
   },
   {
-    name: 'American Institute of Architects Staten Island NY',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/aia_mgx9pk.png',
-    link: 'https://aiasiny.org'
+    name: 'STEM Kids NYC',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750454719/IMG_7710-removebg-preview_xcl08w.png',
+    link: 'https://stemkidsnyc.org'
   },
   {
     name: 'Staten Island Technical High School',
@@ -110,10 +110,10 @@ onMounted(() => {
             Our mission is to bridge the gap between students and career professionals from diverse
             industries by offering immersive learning experiences. Our initiative has already
             engaged over
-            <span class="font-semibold text-blue-600">785+ students</span>, delivered
-            <span class="font-semibold text-blue-600">235 STEM kits</span>, and featured
-            <span class="font-semibold text-blue-600">six distinguished speakers</span> from various
-            technical backgrounds.
+            <span class="font-semibold text-blue-600">925+ students</span>, delivered
+            <span class="font-semibold text-blue-600">235 STEM kits</span>, and hosted
+            <span class="font-semibold text-blue-600">22+ workshops</span> with various speakers
+            from different technical backgrounds.
           </p>
         </div>
 

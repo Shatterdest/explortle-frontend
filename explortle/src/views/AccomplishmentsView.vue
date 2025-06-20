@@ -18,9 +18,9 @@ const accomplishments = [
     link: 'https://www.acementor.org'
   },
   {
-    name: 'American Institute of Architects Staten Island NY',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/aia_mgx9pk.png',
-    link: 'https://aiasiny.org'
+    name: 'STEM Kids NYC',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750454719/IMG_7710-removebg-preview_xcl08w.png',
+    link: 'https://stemkidsnyc.org'
   },
   {
     name: 'Staten Island Technical High School',
@@ -36,6 +36,16 @@ const accomplishments = [
     name: 'LEAP Academy',
     path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747548087/Screenshot_40-removebg-preview-removebg-preview_d76tjr.png',
     link: 'https://www.yourleapforward.com'
+  },
+  {
+    name: 'Manhattan University (pending)',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750455043/250px-Manhattan_College_logo.svg_jllogn.png',
+    link: 'https://manhattan.edu'
+  },
+  {
+    name: 'The National Association of Asian American Professionals (pending)',
+    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750455212/logoo-1_yt4v0c.webp',
+    link: 'https://ny.naaap.org'
   }
 ]
 const isMobile = ref(window.innerWidth < 768)
@@ -109,12 +119,6 @@ onMounted(() => {
             interactive workshops. Our hands-on experiences provide real-world exposure to STEM,
             finance, and other industries.
           </p>
-          <p class="mt-4 text-lg leading-relaxed">
-            Our initiative has already engaged over
-            <span class="font-semibold text-blue-600">785+ students</span>, delivered <span class="font-semibold text-blue-600">235 STEM kits</span>, and featured
-            <span class="font-semibold text-blue-600">six distinguished speakers</span> from various
-            technical backgrounds.
-          </p>
         </div>
 
         <div class="mt-6 flex items-center justify-end md:justify-end">
@@ -145,7 +149,7 @@ onMounted(() => {
       </div>
 
       <div
-  class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
+        class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
         @mouseover="stopAutoSlide"
         @mouseleave="startAutoSlide"
       >
@@ -178,7 +182,7 @@ onMounted(() => {
     </section>
     <section id="orgs" class="bg-white py-10 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
-        We've hosted workshops with these organizations:
+        Partnerships:
       </h2>
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-4 gap-6 w-5/6 mx-auto">
