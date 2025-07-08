@@ -111,7 +111,7 @@ onMounted(() => {
             industries by offering immersive learning experiences. Our initiative has already
             engaged over
             <span class="font-semibold text-blue-600">925+ students</span>, delivered
-            <span class="font-semibold text-blue-600">235 STEM kits</span>, and hosted
+            <span class="font-semibold text-blue-600">385 STEM kits</span>, and hosted
             <span class="font-semibold text-blue-600">22+ workshops</span> with various speakers
             from different technical backgrounds.
           </p>
