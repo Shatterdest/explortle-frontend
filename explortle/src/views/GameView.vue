@@ -8,7 +8,18 @@
           v-for="career in careers"
           :key="career.name"
         >
-          <CareerGame :career="career" />
+          <div
+            v-if="!cardStates[career.name]"
+            class="flex flex-col items-center justify-center w-full h-full"
+          >
+            <img
+              src="/placeholder.png"
+              alt="Hidden Career"
+              class="w-[70%] h-auto opacity-30 mb-3"
+            />
+            <p class="text-xl text-gray-700 font-semibold">Click to Reveal</p>
+          </div>
+          <CareerGame :career="career" @click="counter" />
         </div>
       </div>
     </div>
@@ -16,8 +27,21 @@
 </template>
 
 <script setup lang="ts">
+import { reactive } from 'vue'
 import { careers } from '@/components/GameCareers'
 import CareerGame from '@/components/CareerGame.vue'
+
+// Reactive map to track if each card is clicked
+const cardStates = reactive(Object.fromEntries(careers.map((c) => [c.name, false])))
+
+function toggleCard(name: string) {
+  cardStates[name] = !cardStates[name]
+}
+let count = 0
+function counter() {
+  count = count + 1
+  console.log(count)
+}
 </script>
 
 <style scoped></style>
