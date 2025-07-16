@@ -3,6 +3,7 @@ import ContactView from '@/views/ContactView.vue'
 import HomeView from '@/views/HomeView.vue'
 import AccomplishmentsView from '@/views/AccomplishmentsView.vue'
 import ApplyView from '@/views/ApplyView.vue'
+import GameView from '@/views/GameView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: () => import('@/views/NotFound.vue')
+    },
+    {
+      path: '/game',
+      name: 'game',
+      component: GameView
     }
   ], 
   scrollBehavior(to) {
