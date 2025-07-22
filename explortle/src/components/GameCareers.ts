@@ -90,7 +90,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 11,
+		id: 1,
 		name: 'Industrial Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -99,7 +99,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 12,
+		id: 2,
 		name: 'Petroleum Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -108,7 +108,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 13,
+		id: 3,
 		name: 'Robotics Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -117,7 +117,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 14,
+		id: 4,
 		name: 'Systems Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -126,7 +126,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 15,
+		id: 5,
 		name: 'Marine Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -135,7 +135,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 16,
+		id: 6,
 		name: 'Materials Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -144,7 +144,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 17,
+		id: 7,
 		name: 'Geotechnical Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -153,7 +153,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 18,
+		id: 8,
 		name: 'Mining Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -162,7 +162,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 19,
+		id: 9,
 		name: 'Structural Engineer',
 		type: 'stuff',
 		averagepay: 0,
@@ -171,7 +171,7 @@ export const careers = [
 		url: '',
 	},
 	{
-		id: 20,
+		id: 10,
 		name: 'Automotive Engineer',
 		type: 'stuff',
 		averagepay: 0,

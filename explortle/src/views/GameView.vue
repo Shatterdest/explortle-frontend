@@ -2,44 +2,145 @@
   <main>
     <div class="container mx-auto">
       <h2 class="text-4xl font-heading font-bold text-purple-600 my-4 ml-[5%]">Career Game</h2>
+
       <div class="cardscontainer flex flex-wrap justify-around w-[90%] p-8 bg-white mx-auto">
         <div
-          class="card flex flex-col justify-center items-center w-[21%] h-[200px] border-2 border-black mb-[3%] shadow-[9px_8px_0_black] rounded-2xl bg-white cursor-pointer transition duration-300 overflow-hidden"
+          v-if="hasWon"
+          class="text-8xl font-bold text-green-600 text-center w-full mt-6 animate-bounce"
+        >
+          🎉 You Win! 🎉
+        </div>
+        <div
           v-for="(career, index) in careers"
-          :key="career.name"
+          :key="career.id"
+          class="card-wrapper w-[21%] h-[200px] mb-[3%] perspective"
+          :class="[
+            matchedFadingCards.includes(index)
+              ? 'opacity-0 pointer-events-none transition-opacity duration-1000'
+              : '',
+            matchedCards.includes(index) ? 'invisible' : ''
+          ]"
           @click="toggleCard(index)"
         >
-          <template v-if="revealedCards.includes(index)">
-            <CareerGame :career="career" />
-          </template>
-          <template v-else>
-            <img src="y/Placeholder.png" alt="Placeholder" class="object-contain max-h-full" />
-          </template>
+          <div
+            class="card-inner relative w-full h-full transition-transform duration-700 transform-style preserve-3d"
+            :class="revealedCards.includes(index) ? 'rotate-y-180' : ''"
+          >
+            <!-- Back (hidden side) -->
+            <div
+              class="card-face card-back absolute w-full h-full flex items-center justify-center border-2 border-black rounded-2xl bg-white backface-hidden"
+            >
+              <img
+                src="/Placeholder.png"
+                alt="Placeholder"
+                class="object-contain max-h-full h-[100%]"
+              />
+            </div>
+
+            <!-- Front (revealed side) -->
+            <div
+              class="card-face card-front absolute w-full h-full border-2 border-black rounded-2xl bg-white rotate-y-180 backface-hidden overflow-hidden"
+            >
+              <CareerGame :career="career" />
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="w-full flex justify-center mt-6">
+        <button
+          class="bg-purple-600 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-purple-700 transition-colors"
+          @click="restartGame"
+        >
+          🔄 Restart Game
+        </button>
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { careers } from '@/components/GameCareers'
 import CareerGame from '@/components/CareerGame.vue'
 
 const revealedCards = ref<number[]>([])
+const matchedCards = ref<number[]>([])
+const matchedFadingCards = ref<number[]>([])
+
+function restartGame() {
+  window.location.reload()
+}
+
+const totalCards = careers.length
+const hasWon = computed(() => matchedCards.value.length === totalCards)
 
 function toggleCard(index: number) {
-  if (revealedCards.value.includes(index)) {
-    revealedCards.value = revealedCards.value.filter((i) => i !== index)
+  if (
+    revealedCards.value.includes(index) ||
+    matchedCards.value.includes(index) ||
+    matchedFadingCards.value.includes(index)
+  )
     return
-  }
-
-  if (revealedCards.value.length >= 2) {
-    revealedCards.value = []
-  }
 
   revealedCards.value.push(index)
+
+  if (revealedCards.value.length === 2) {
+    const [firstIdx, secondIdx] = revealedCards.value
+    const firstCard = careers[firstIdx]
+    const secondCard = careers[secondIdx]
+
+    if (firstCard.id === secondCard.id) {
+      matchedFadingCards.value.push(firstIdx, secondIdx)
+
+      setTimeout(() => {
+        matchedCards.value.push(firstIdx, secondIdx)
+        matchedFadingCards.value = matchedFadingCards.value.filter(
+          (i) => i !== firstIdx && i !== secondIdx
+        )
+      }, 1000)
+
+      setTimeout(() => {
+        revealedCards.value = []
+      }, 1100)
+    } else {
+      setTimeout(() => {
+        revealedCards.value = []
+      }, 1000)
+    }
+  }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.perspective {
+  perspective: 1000px;
+}
+
+.card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card-face {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card-back {
+  transform: rotateY(0deg);
+}
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+</style>
