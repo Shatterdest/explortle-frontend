@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="w-full flex justify-center mt-6">
+      <div class="w-full flex justify-center my-3">
         <button
           class="bg-purple-600 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-purple-700 transition-colors"
           @click="restartGame"
@@ -67,6 +67,7 @@ import CareerGame from '@/components/CareerGame.vue'
 const revealedCards = ref<number[]>([])
 const matchedCards = ref<number[]>([])
 const matchedFadingCards = ref<number[]>([])
+const isChecking = ref(false)
 
 function restartGame() {
   window.location.reload()
@@ -77,6 +78,7 @@ const hasWon = computed(() => matchedCards.value.length === totalCards)
 
 function toggleCard(index: number) {
   if (
+    isChecking.value ||
     revealedCards.value.includes(index) ||
     matchedCards.value.includes(index) ||
     matchedFadingCards.value.includes(index)
@@ -86,6 +88,7 @@ function toggleCard(index: number) {
   revealedCards.value.push(index)
 
   if (revealedCards.value.length === 2) {
+    isChecking.value = true
     const [firstIdx, secondIdx] = revealedCards.value
     const firstCard = careers[firstIdx]
     const secondCard = careers[secondIdx]
@@ -98,14 +101,13 @@ function toggleCard(index: number) {
         matchedFadingCards.value = matchedFadingCards.value.filter(
           (i) => i !== firstIdx && i !== secondIdx
         )
-      }, 1000)
-
-      setTimeout(() => {
         revealedCards.value = []
-      }, 1100)
+        isChecking.value = false
+      }, 1000)
     } else {
       setTimeout(() => {
         revealedCards.value = []
+        isChecking.value = false
       }, 1000)
     }
   }
