@@ -180,3 +180,8 @@ export const careers = [
 		url: '',
 	},
 ]
+
+export interface Career {
+  id: number
+  name: string
+}

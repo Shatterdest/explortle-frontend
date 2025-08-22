@@ -3,13 +3,10 @@
     <div class="container mx-auto">
       <h2 class="text-4xl font-heading font-bold text-purple-600 my-4 ml-[5%]">Career Game</h2>
 
-      <div class="cardscontainer flex flex-wrap justify-around w-[90%] p-8 bg-white mx-auto">
-        <div
-          v-if="hasWon"
-          class="text-8xl font-bold text-green-600 text-center w-full mt-6 animate-bounce"
-        >
-          🎉 You Win! 🎉
-        </div>
+      <div
+        v-if="!hasWon"
+        class="cardscontainer flex flex-wrap justify-around w-[90%] p-8 bg-white mx-auto"
+      >
         <div
           v-for="(career, index) in careers"
           :key="career.id"
@@ -46,7 +43,12 @@
           </div>
         </div>
       </div>
-
+      <div
+        v-if="hasWon"
+        class="text-8xl font-bold text-green-600 text-center w-full mt-6 animate-bounce"
+      >
+        🎉 You Win! 🎉
+      </div>
       <div class="w-full flex justify-center my-3">
         <button
           class="bg-purple-600 text-white font-semibold px-6 py-3 rounded-2xl hover:bg-purple-700 transition-colors"
@@ -61,7 +63,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { careers } from '@/components/GameCareers'
+import { careers as originalCareers, type Career } from '@/components/GameCareers'
 import CareerGame from '@/components/CareerGame.vue'
 
 const revealedCards = ref<number[]>([])
@@ -69,11 +71,22 @@ const matchedCards = ref<number[]>([])
 const matchedFadingCards = ref<number[]>([])
 const isChecking = ref(false)
 
+const careers = ref<Career[]>(shuffleCards(originalCareers))
+
+function shuffleCards(array: Career[]): Career[] {
+  const newShuffle = [...array]
+  for (let i = newShuffle.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[newShuffle[i], newShuffle[j]] = [newShuffle[j], newShuffle[i]]
+  }
+  return newShuffle
+}
+
 function restartGame() {
   window.location.reload()
 }
 
-const totalCards = careers.length
+const totalCards = careers.value.length
 const hasWon = computed(() => matchedCards.value.length === totalCards)
 
 function toggleCard(index: number) {
@@ -90,8 +103,8 @@ function toggleCard(index: number) {
   if (revealedCards.value.length === 2) {
     isChecking.value = true
     const [firstIdx, secondIdx] = revealedCards.value
-    const firstCard = careers[firstIdx]
-    const secondCard = careers[secondIdx]
+    const firstCard = careers.value[firstIdx]
+    const secondCard = careers.value[secondIdx]
 
     if (firstCard.id === secondCard.id) {
       matchedFadingCards.value.push(firstIdx, secondIdx)
