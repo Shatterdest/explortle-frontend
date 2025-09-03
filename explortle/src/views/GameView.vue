@@ -10,7 +10,7 @@
         <div
           v-for="(career, index) in careers"
           :key="career.id"
-          class="card-wrapper w-[21%] h-[300px] mb-[3%] perspective"
+          class="card-wrapper w-[21%] h-[395px] mb-[3%] perspective"
           :class="[
             matchedFadingCards.includes(index)
               ? 'opacity-0 pointer-events-none transition-opacity duration-1000'
