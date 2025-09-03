@@ -1,9 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ContactView from '@/views/ContactView.vue'
-import HomeView from '@/views/HomeView.vue'
-import AccomplishmentsView from '@/views/AccomplishmentsView.vue'
-import ApplyView from '@/views/ApplyView.vue'
-import GameView from '@/views/GameView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,24 +6,24 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('@/views/HomeView.vue')
     },
     {
       path: '/contact',
       name: 'contact',
-      component: ContactView
+      component: () => import('@/views/ContactView.vue')
     },
     {
       path: '/whatwedo',
       name: 'whatwedo',
-      component: AccomplishmentsView
+      component: () => import('@/views/AccomplishmentsView.vue')
     },
-    { path: '/apply', name: 'apply', component: ApplyView }, 
+    { path: '/apply', name: 'apply', component: () => import('@/views/ApplyView.vue') },
     {
       path: '/event/:slug',
       name: 'EventDetail',
       component: () => import('@/views/EventDetailView.vue')
-    }, 
+    },
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
@@ -37,18 +32,18 @@ const router = createRouter({
     {
       path: '/game',
       name: 'game',
-      component: GameView
+      component (): => import('@/views/GameView.vue')
     }
-  ], 
+  ],
   scrollBehavior(to) {
     if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth',
-      };
+        behavior: 'smooth'
+      }
     }
-    return { top: 0 };
-  },
+    return { top: 0 }
+  }
 })
 
 export default router

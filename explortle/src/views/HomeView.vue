@@ -54,7 +54,7 @@ const prevSlide = () => {
   slidingDirection.value = 'prev'
   currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length
 }
-const accomplishments = [
+const partners = [
   {
     name: 'Google',
     path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547804/google-logo-transparent-background-free-png_crewre.png',
@@ -110,8 +110,8 @@ onMounted(() => {
             Our mission is to bridge the gap between students and career professionals from diverse
             industries by offering immersive learning experiences. Our initiative has already
             engaged over
-            <span class="font-semibold text-blue-600">925+ students</span>, delivered
-            <span class="font-semibold text-blue-600">385 STEM kits</span>, and hosted
+            <span class="font-semibold text-blue-600">1000+ students</span>, delivered
+            <span class="font-semibold text-blue-600">425 STEM kits</span>, and hosted
             <span class="font-semibold text-blue-600">22+ workshops</span> with various speakers
             from different technical backgrounds.
           </p>
@@ -187,7 +187,7 @@ onMounted(() => {
 
         <div class="overflow-hidden">
           <div class="partner-track animate-slide whitespace-nowrap">
-            <template v-for="(org, index) in accomplishments.concat(accomplishments)" :key="index">
+            <template v-for="(org, index) in partners.concat(partners)" :key="index">
               <a
                 :href="org.link"
                 target="_blank"
