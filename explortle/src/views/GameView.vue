@@ -10,7 +10,7 @@
         <div
           v-for="(career, index) in careers"
           :key="career.id"
-          class="card-wrapper w-[21%] h-[200px] mb-[3%] perspective"
+          class="card-wrapper w-[21%] h-[300px] mb-[3%] perspective"
           :class="[
             matchedFadingCards.includes(index)
               ? 'opacity-0 pointer-events-none transition-opacity duration-1000'
@@ -63,7 +63,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { careers as originalCareers, type Career } from '@/components/GameCareers'
+import { baseCareers, type Career } from '@/components/GameCareers'
 import CareerGame from '@/components/CareerGame.vue'
 
 const revealedCards = ref<number[]>([])
@@ -71,7 +71,28 @@ const matchedCards = ref<number[]>([])
 const matchedFadingCards = ref<number[]>([])
 const isChecking = ref(false)
 
-const careers = ref<Career[]>(shuffleCards(originalCareers))
+const careers = ref<Career[]>(pickRandomCareers(baseCareers, 10))
+
+function pickRandomCareers(allCareers: Career[], count: number): Career[] {
+  const possibleCareers = [...allCareers]
+
+  const selected: Career[] = []
+  for (let i = 0; i < count; i++) {
+    const randomCareers = Math.floor(Math.random() * possibleCareers.length)
+    const career = possibleCareers.splice(randomCareers, 1)[0]
+    selected.push(career)
+  }
+
+  const duplicatedCareers: Career[] = []
+  selected.forEach((career) => {
+    duplicatedCareers.push({ ...career, uid: career.id + '-a' })
+    duplicatedCareers.push({ ...career, uid: career.id + '-b' })
+  })
+
+  return shuffleCards(duplicatedCareers)
+}
+
+//console.log(careers.value)
 
 function shuffleCards(array: Career[]): Career[] {
   const newShuffle = [...array]
@@ -130,6 +151,11 @@ function toggleCard(index: number) {
 <style scoped>
 .perspective {
   perspective: 1000px;
+}
+
+.card-wrapper {
+  perspective: 1000px;
+  min-height: 300px;
 }
 
 .card-inner {
