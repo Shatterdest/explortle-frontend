@@ -92,7 +92,6 @@ function pickRandomCareers(allCareers: Career[], count: number): Career[] {
   return shuffleCards(duplicatedCareers)
 }
 
-//console.log(careers.value)
 
 function shuffleCards(array: Career[]): Career[] {
   const newShuffle = [...array]
