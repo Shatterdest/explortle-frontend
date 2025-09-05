@@ -2,6 +2,7 @@
   <main>
     <div class="container mx-auto">
       <h2 class="text-4xl font-heading font-bold text-purple-600 my-4 ml-[5%]">Career Game</h2>
+      <h3 class="font-bold text-purple-400 my-4 ml-[5%]">Directions: Click a card to flip it. After 2 cards are flipped, they will flip back if they do not match. Find all the matching cards to solve the puzzle!</h3>
 
       <div
         v-if="!hasWon"
@@ -10,7 +11,7 @@
         <div
           v-for="(career, index) in careers"
           :key="career.id"
-          class="card-wrapper w-[21%] h-[395px] mb-[3%] perspective"
+          class="card-wrapper w-[21%] h-[290px] mb-[3%] perspective"
           :class="[
             matchedFadingCards.includes(index)
               ? 'opacity-0 pointer-events-none transition-opacity duration-1000'
@@ -27,18 +28,14 @@
             <div
               class="card-face card-back absolute w-full h-full flex items-center justify-center border-2 border-black rounded-2xl bg-white backface-hidden"
             >
-              <img
-                src="/Placeholder.png"
-                alt="Placeholder"
-                class="object-contain max-h-full h-[100%]"
-              />
+              <p>Flip me to reveal a career! </p>
             </div>
 
             <!-- Front (revealed side) -->
             <div
               class="card-face card-front absolute w-full h-full border-2 border-black rounded-2xl bg-white rotate-y-180 backface-hidden overflow-hidden"
             >
-              <CareerGame :career="career" />
+              <CareerCard :career="career" />
             </div>
           </div>
         </div>
@@ -64,7 +61,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { baseCareers, type Career } from '@/components/GameCareers'
-import CareerGame from '@/components/CareerGame.vue'
+import CareerCard from '@/components/CareerCard.vue'
 
 const revealedCards = ref<number[]>([])
 const matchedCards = ref<number[]>([])
