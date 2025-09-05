@@ -28,6 +28,11 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: () => import('@/views/NotFound.vue')
+    },
+    {
+      path: '/game',
+      name: 'game',
+      component: () => import('@/views/GameView.vue')
     }
   ],
   scrollBehavior(to) {
