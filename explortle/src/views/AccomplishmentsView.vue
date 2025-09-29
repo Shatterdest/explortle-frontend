@@ -178,11 +178,14 @@ onMounted(() => {
           </svg>
         </div>
       </div>
+      <!-- New video section with subtitle -->
+      <div class="flex flex-col items-center justify-center px-6">
+        <h3 class="text-2xl font-heading font-semibold text-purple-600 text-center mb-4">
+          Check out our new video series: <span class="italic">Campus Voices</span>
+        </h3>
 
-      <!-- New video with thumbnail -->
-      <div class="flex justify-center px-6">
         <div
-          class="w-full aspect-[4/3] rounded-lg shadow-md overflow-hidden cursor-pointer group relative"
+          class="w-full aspect-[16/9] rounded-lg shadow-md overflow-hidden cursor-pointer group relative"
           @click="showSecondVideo = true"
         >
           <template v-if="!showSecondVideo">
@@ -282,7 +285,6 @@ onMounted(() => {
     </section>
   </main>
 </template>
-
 
 <style scoped>
 .fade-in {
