@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
+const showSecondVideo = ref(false)
+
 const accomplishments = [
   {
     name: 'Google',
@@ -121,7 +123,7 @@ onMounted(() => {
           </p>
         </div>
         <div
-          class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
+          class="mt-5 mb-5 relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
           @mouseover="stopAutoSlide"
           @mouseleave="startAutoSlide"
         >
@@ -163,8 +165,7 @@ onMounted(() => {
             </a>
           </p>
           <svg
-            class="ml-3 w-6 h-6 text-gray-600 transition-transform"
-            :class="{ 'rotate-down': isMobile, 'rotate-left': !isMobile }"
+            class="ml-3 w-6 h-6 text-gray-600 transition-transform rotate-up"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -177,7 +178,47 @@ onMounted(() => {
           </svg>
         </div>
       </div>
+
+      <!-- New video with thumbnail -->
+      <div class="flex justify-center px-6">
+        <div
+          class="w-full aspect-[4/3] rounded-lg shadow-md overflow-hidden cursor-pointer group relative"
+          @click="showSecondVideo = true"
+        >
+          <template v-if="!showSecondVideo">
+            <img
+              src="https://img.youtube.com/vi/zu-pixBoDUE/hqdefault.jpg"
+              alt="YouTube Thumbnail"
+              class="w-full h-full object-cover"
+            />
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition"
+            >
+              <svg
+                class="w-16 h-16 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </template>
+
+          <template v-else>
+            <iframe
+              class="w-full h-full rounded-lg shadow-md"
+              src="https://www.youtube.com/embed/zu-pixBoDUE?autoplay=1"
+              title="YouTube Embed"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </template>
+        </div>
+      </div>
     </section>
+
     <section id="orgs" class="bg-white py-10 px-6">
       <h2 class="text-4xl font-heading font-bold text-purple-600 text-center fade-in">
         Partnerships:
@@ -211,6 +252,7 @@ onMounted(() => {
         ></iframe>
       </div>
     </div>
+
     <section class="py-16 px-6">
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
         <img
@@ -240,6 +282,7 @@ onMounted(() => {
     </section>
   </main>
 </template>
+
 
 <style scoped>
 .fade-in {
@@ -283,12 +326,8 @@ onMounted(() => {
   transition: opacity 0.3s ease-in-out;
 }
 
-.rotate-left {
-  transform: rotate(-90deg);
-}
-
-.rotate-down {
-  transform: rotate(0deg);
+.rotate-up {
+  transform: rotate(180deg);
 }
 
 svg {
