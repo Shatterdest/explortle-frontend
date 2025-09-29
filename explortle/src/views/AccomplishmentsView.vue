@@ -120,7 +120,37 @@ onMounted(() => {
             finance, and other industries.
           </p>
         </div>
+        <div
+          class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
+          @mouseover="stopAutoSlide"
+          @mouseleave="startAutoSlide"
+        >
+          <div class="relative w-full h-full">
+            <transition :name="slidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
+              <img
+                v-if="images.length"
+                :key="currentSlide"
+                :src="images[currentSlide]"
+                alt="Workshop Image"
+                class="absolute w-full h-full object-cover"
+              />
+            </transition>
+          </div>
 
+          <button
+            @click="prevSlide"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+          >
+            ◀
+          </button>
+
+          <button
+            @click="nextSlide"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+          >
+            ▶
+          </button>
+        </div>
         <div class="mt-6 flex items-center justify-end md:justify-end">
           <p class="text-gray-600 text-md font-medium">
             Images from our partnership workshop with
@@ -146,38 +176,6 @@ onMounted(() => {
             />
           </svg>
         </div>
-      </div>
-
-      <div
-        class="relative w-full max-w-[512px] mx-auto rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-[4/3] group"
-        @mouseover="stopAutoSlide"
-        @mouseleave="startAutoSlide"
-      >
-        <div class="relative w-full h-full">
-          <transition :name="slidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
-            <img
-              v-if="images.length"
-              :key="currentSlide"
-              :src="images[currentSlide]"
-              alt="Workshop Image"
-              class="absolute w-full h-full object-cover"
-            />
-          </transition>
-        </div>
-
-        <button
-          @click="prevSlide"
-          class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
-        >
-          ◀
-        </button>
-
-        <button
-          @click="nextSlide"
-          class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
-        >
-          ▶
-        </button>
       </div>
     </section>
     <section id="orgs" class="bg-white py-10 px-6">
