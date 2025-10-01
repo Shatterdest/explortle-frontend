@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const showSecondVideo = ref(false)
-
 const accomplishments = [
   {
     name: 'Google',
@@ -56,13 +54,8 @@ const updateScreenSize = () => {
   isMobile.value = window.innerWidth < 768
 }
 
-onMounted(() => {
-  window.addEventListener('resize', updateScreenSize)
-  updateScreenSize()
-})
-
+// --- First Slideshow Logic ---
 const imageFiles = import.meta.glob('@/assets/imgs/workshops/*.png', { eager: true })
-
 const images = ref(
   Object.entries(imageFiles)
     .map(([path, img]) => {
@@ -77,36 +70,72 @@ const images = ref(
     .sort((a, b) => a.number - b.number)
     .map((img) => img.src)
 )
-
 const currentSlide = ref(0)
 const slidingDirection = ref<'next' | 'prev'>('next')
-
 let slideInterval: ReturnType<typeof setInterval> | null = null
-
 const startAutoSlide = () => {
   slideInterval = setInterval(() => {
     nextSlide()
   }, 3000)
 }
-
 const stopAutoSlide = () => {
   if (slideInterval) {
     clearInterval(slideInterval)
   }
 }
-
 const nextSlide = () => {
   slidingDirection.value = 'next'
   currentSlide.value = (currentSlide.value + 1) % images.value.length
 }
-
 const prevSlide = () => {
   slidingDirection.value = 'prev'
   currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length
 }
 
+// --- Second Slideshow Logic (from HomeView) ---
+const homeImageFiles = import.meta.glob('@/assets/imgs/slides/*.png', { eager: true })
+const homeImages = ref(
+  Object.entries(homeImageFiles)
+    .map(([path, img]) => {
+      const match = path.match(/(\d+)\.png$/)
+      const number = match ? parseInt(match[1], 10) : 0
+      return {
+        path,
+        src: (img as any).default,
+        number
+      }
+    })
+    .sort((a, b) => a.number - b.number)
+    .map((img) => img.src)
+)
+const homeCurrentSlide = ref(0)
+const homeSlidingDirection = ref<'next' | 'prev'>('next')
+let homeSlideInterval: ReturnType<typeof setInterval> | null = null
+const homeStartAutoSlide = () => {
+  homeSlideInterval = setInterval(() => {
+    homeNextSlide()
+  }, 3000)
+}
+const homeStopAutoSlide = () => {
+  if (homeSlideInterval) {
+    clearInterval(homeSlideInterval)
+  }
+}
+const homeNextSlide = () => {
+  homeSlidingDirection.value = 'next'
+  homeCurrentSlide.value = (homeCurrentSlide.value + 1) % homeImages.value.length
+}
+const homePrevSlide = () => {
+  homeSlidingDirection.value = 'prev'
+  homeCurrentSlide.value =
+    (homeCurrentSlide.value - 1 + homeImages.value.length) % homeImages.value.length
+}
+
 onMounted(() => {
+  window.addEventListener('resize', updateScreenSize)
+  updateScreenSize()
   startAutoSlide()
+  homeStartAutoSlide()
 })
 </script>
 
@@ -178,47 +207,36 @@ onMounted(() => {
           </svg>
         </div>
       </div>
-      <!-- New video section with subtitle -->
-      <div class="flex flex-col items-center justify-center px-6">
-        <h3 class="text-2xl font-heading font-semibold text-purple-600 text-center mb-4">
-          Check out our new video series: <span class="italic">Campus Voices</span>
-        </h3>
-
-        <div
-          class="w-full aspect-[16/9] rounded-lg shadow-md overflow-hidden cursor-pointer group relative"
-          @click="showSecondVideo = true"
-        >
-          <template v-if="!showSecondVideo">
+      <div
+        class="relative w-full rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-square group"
+        @mouseover="homeStopAutoSlide"
+        @mouseleave="homeStartAutoSlide"
+      >
+        <div class="relative w-full h-full">
+          <transition :name="homeSlidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
             <img
-              src="https://img.youtube.com/vi/zu-pixBoDUE/hqdefault.jpg"
-              alt="YouTube Thumbnail"
-              class="w-full h-full object-cover"
+              v-if="homeImages.length"
+              :key="homeCurrentSlide"
+              :src="homeImages[homeCurrentSlide]"
+              alt="Explortle Event"
+              class="absolute w-full h-full object-cover"
             />
-            <div
-              class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition"
-            >
-              <svg
-                class="w-16 h-16 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </template>
-
-          <template v-else>
-            <iframe
-              class="w-full h-full rounded-lg shadow-md"
-              src="https://www.youtube.com/embed/zu-pixBoDUE?autoplay=1"
-              title="YouTube Embed"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </template>
+          </transition>
         </div>
+
+        <button
+          @click="homePrevSlide"
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+        >
+          ◀
+        </button>
+
+        <button
+          @click="homeNextSlide"
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
+        >
+          ▶
+        </button>
       </div>
     </section>
 

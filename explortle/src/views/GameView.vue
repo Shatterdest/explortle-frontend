@@ -1,17 +1,26 @@
 <template>
   <main>
-    <div class="container mx-auto">
-      <h2 class="text-4xl font-heading font-bold text-purple-600 my-4 ml-[5%]">Career Game</h2>
-      <h3 class="font-bold text-purple-400 my-4 ml-[5%]">Directions: Click a card to flip it. After 2 cards are flipped, they will flip back if they do not match. Find all the matching cards to solve the puzzle!</h3>
+    <div class="container mx-auto ">
+      <h2
+        class="text-3xl sm:text-4xl font-heading font-bold text-purple-600 my-4 text-center sm:text-left sm:ml-[5%]"
+      >
+        Career Game
+      </h2>
+      <h3
+        class="font-bold text-purple-400 my-4 text-center sm:text-left sm:ml-[5%] px-2 sm:px-0"
+      >
+        Directions: Click a card to flip it. After 2 cards are flipped, they will flip back if
+        they do not match. Find all the matching cards to solve the puzzle!
+      </h3>
 
       <div
         v-if="!hasWon"
-        class="cardscontainer flex flex-wrap justify-around w-[90%] p-8 bg-white mx-auto"
+        class="cardscontainer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-[90%] p-2 sm:p-4 md:p-8 bg-white mx-auto gap-4 rounded-2xl"
       >
         <div
           v-for="(career, index) in careers"
           :key="career.id"
-          class="card-wrapper w-[21%] h-[290px] mb-[3%] perspective"
+          class="card-wrapper h-[300px] perspective"
           :class="[
             matchedFadingCards.includes(index)
               ? 'opacity-0 pointer-events-none transition-opacity duration-1000'
@@ -24,14 +33,12 @@
             class="card-inner relative w-full h-full transition-transform duration-700 transform-style preserve-3d"
             :class="revealedCards.includes(index) ? 'rotate-y-180' : ''"
           >
-            <!-- Back (hidden side) -->
             <div
               class="card-face card-back absolute w-full h-full flex items-center justify-center border-2 border-black rounded-2xl bg-white backface-hidden"
             >
-              <p>Flip me to reveal a career! </p>
+              <p>Flip me to reveal a career!</p>
             </div>
 
-            <!-- Front (revealed side) -->
             <div
               class="card-face card-front absolute w-full h-full border-2 border-black rounded-2xl bg-white rotate-y-180 backface-hidden overflow-hidden"
             >
@@ -42,7 +49,7 @@
       </div>
       <div
         v-if="hasWon"
-        class="text-8xl font-bold text-green-600 text-center w-full mt-6 animate-bounce"
+        class="text-5xl sm:text-6xl md:text-8xl font-bold text-green-600 text-center w-full mt-6 animate-bounce"
       >
         🎉 You Win! 🎉
       </div>
@@ -88,7 +95,6 @@ function pickRandomCareers(allCareers: Career[], count: number): Career[] {
 
   return shuffleCards(duplicatedCareers)
 }
-
 
 function shuffleCards(array: Career[]): Career[] {
   const newShuffle = [...array]

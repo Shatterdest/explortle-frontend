@@ -11,49 +11,8 @@ onMounted(() => {
   route.route[0].current = true
 })
 
-const imageFiles = import.meta.glob('@/assets/imgs/slides/*.png', { eager: true })
+const showSecondVideo = ref(false)
 
-const images = ref(
-  Object.entries(imageFiles)
-    .map(([path, img]) => {
-      const match = path.match(/(\d+)\.png$/)
-      const number = match ? parseInt(match[1], 10) : 0
-      return {
-        path,
-        src: (img as any).default,
-        number
-      }
-    })
-    .sort((a, b) => a.number - b.number)
-    .map((img) => img.src)
-)
-
-const currentSlide = ref(0)
-const slidingDirection = ref<'next' | 'prev'>('next')
-
-let slideInterval: ReturnType<typeof setInterval> | null = null
-
-const startAutoSlide = () => {
-  slideInterval = setInterval(() => {
-    nextSlide()
-  }, 3000)
-}
-
-const stopAutoSlide = () => {
-  if (slideInterval) {
-    clearInterval(slideInterval)
-  }
-}
-
-const nextSlide = () => {
-  slidingDirection.value = 'next'
-  currentSlide.value = (currentSlide.value + 1) % images.value.length
-}
-
-const prevSlide = () => {
-  slidingDirection.value = 'prev'
-  currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length
-}
 const partners = [
   {
     name: 'Google',
@@ -91,9 +50,6 @@ const partners = [
     link: 'https://www.yourleapforward.com'
   }
 ]
-onMounted(() => {
-  startAutoSlide()
-})
 </script>
 
 <template>
@@ -147,36 +103,46 @@ onMounted(() => {
         </div>
       </div>
 
-      <div
-        class="relative w-full rounded-lg shadow-lg border-4 border-gray-300 overflow-hidden aspect-square group"
-        @mouseover="stopAutoSlide"
-        @mouseleave="startAutoSlide"
-      >
-        <div class="relative w-full h-full">
-          <transition :name="slidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
+      <div class="flex flex-col items-center justify-center px-6">
+        <h3 class="text-2xl font-heading font-semibold text-purple-600 text-center mb-4">
+          Check out our new video series: <span class="italic">Campus Voices</span>
+        </h3>
+
+        <div
+          class="w-full aspect-[16/9] rounded-lg shadow-md overflow-hidden cursor-pointer group relative"
+          @click="showSecondVideo = true"
+        >
+          <template v-if="!showSecondVideo">
             <img
-              v-if="images.length"
-              :key="currentSlide"
-              :src="images[currentSlide]"
-              alt="Explortle Event"
-              class="absolute w-full h-full object-cover"
+              src="https://img.youtube.com/vi/zu-pixBoDUE/hqdefault.jpg"
+              alt="YouTube Thumbnail"
+              class="w-full h-full object-cover"
             />
-          </transition>
+            <div
+              class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition"
+            >
+              <svg
+                class="w-16 h-16 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </template>
+
+          <template v-else>
+            <iframe
+              class="w-full h-full rounded-lg shadow-md"
+              src="https://www.youtube.com/embed/zu-pixBoDUE?autoplay=1"
+              title="YouTube Embed"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </template>
         </div>
-
-        <button
-          @click="prevSlide"
-          class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
-        >
-          ◀
-        </button>
-
-        <button
-          @click="nextSlide"
-          class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-3 shadow-md hover:bg-gray-700 transition opacity-0 group-hover:opacity-100"
-        >
-          ▶
-        </button>
       </div>
     </section>
     <section class="bg-gray-100 py-16 mt-16">
@@ -227,29 +193,6 @@ onMounted(() => {
   to {
     opacity: 1;
   }
-}
-
-.slide-next-enter-active,
-.slide-next-leave-active,
-.slide-prev-enter-active,
-.slide-prev-leave-active {
-  transition: transform 0.7s ease-in-out;
-}
-
-.slide-next-enter-from {
-  transform: translateX(100%);
-}
-
-.slide-next-leave-to {
-  transform: translateX(-100%);
-}
-
-.slide-prev-enter-from {
-  transform: translateX(-100%);
-}
-
-.slide-prev-leave-to {
-  transform: translateX(100%);
 }
 
 .group:hover .opacity-0 {
