@@ -19,14 +19,17 @@ const team = ref([
     role: 'Social Media Lead',
     img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015355/IMG_3217_qv04ku.webp'
   },
-  { name: 'Kennix Li', role: 'Social Media', img: '' },
-  { name: 'Serena Zhou', role: 'Social Media', img: '' },
-  { name: 'Jasmina Marupova', role: 'Social Media', img: '' },
   {
     name: 'Tiffany He',
     role: 'Event Coordinator Lead',
     img: ''
   },
+  { name: 'Jiaxuan Lin', role: 'Fundraising Lead', img: '' },
+  { name: 'Winnie Rong', role: 'Secretary', img: '' },
+  { name: 'Yi Xia', role: 'Web Development Lead', img: '' },
+  { name: 'Kennix Li', role: 'Social Media', img: '' },
+  { name: 'Serena Zhou', role: 'Social Media', img: '' },
+  { name: 'Jasmina Marupova', role: 'Social Media', img: '' },
   {
     name: 'Ocean Lin',
     role: 'Event Coordinator',
@@ -35,12 +38,12 @@ const team = ref([
   { name: 'Philijoy Li', role: 'Event Coordinator', img: '' },
   { name: 'Eric Huang', role: 'Event Coordinator', img: '' },
   { name: 'Hui Lin (Michelle) Liu', role: 'Event Coordinator', img: '' },
-  { name: 'Winnie Wu', role: 'Fundraising', img: '' },
-  { name: 'Jiaxuan Lin', role: 'Fundraising', img: '' },
   { name: 'Mandy Chen', role: 'Fundraising', img: '' },
-  { name: 'Winnie Rong', role: 'Secretary', img: '' },
-  { name: 'Yi Xia', role: 'Web Development Lead', img: '' }, 
-  
+  { name: 'Roger Zheng', role: 'Fundraising', img: '' },
+  { name: 'Frank Zhu', role: 'Fundraising', img: '' },
+  { name: 'Ricky Zheng', role: 'Fundraising', img: '' },
+  { name: 'Alexander Lee', role: 'Fundraising', img: '' },
+
 ])
 </script>
 
