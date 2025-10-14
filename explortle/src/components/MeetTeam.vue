@@ -27,6 +27,8 @@ const team = ref([
   { name: 'Jiaxuan Lin', role: 'Fundraising Lead', img: '' },
   { name: 'Winnie Rong', role: 'Secretary', img: '' },
   { name: 'Yi Xia', role: 'Web Development Lead', img: '' },
+  { name: 'Christina Chen', role: 'Outreach', img: '' },
+  { name: 'Elise Ann Dimatulac', role: 'Outreach', img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/c_crop,w_250,h_250/v1760404190/Screenshot_4_nozc4a.png' },
   { name: 'Kennix Li', role: 'Social Media', img: '' },
   { name: 'Serena Zhou', role: 'Social Media', img: '' },
   { name: 'Jasmina Marupova', role: 'Social Media', img: '' },
@@ -35,7 +37,6 @@ const team = ref([
     role: 'Event Coordinator',
     img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746931063/CF222D93-011A-41A3-84C8-D638131E77F9_nvra7e.jpg'
   },
-  { name: 'Philijoy Li', role: 'Event Coordinator', img: '' },
   { name: 'Eric Huang', role: 'Event Coordinator', img: '' },
   { name: 'Hui Lin (Michelle) Liu', role: 'Event Coordinator', img: '' },
   { name: 'Mandy Chen', role: 'Fundraising', img: '' },
