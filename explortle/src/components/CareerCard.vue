@@ -13,7 +13,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({ career: { type: Object, required: true } })
+import type { Career } from './GameCareers'
+
+defineProps<{
+  career: Career
+}>()
 </script>
 
 <style scoped></style>

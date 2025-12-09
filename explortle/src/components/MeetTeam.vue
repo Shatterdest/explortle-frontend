@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+interface TeamMember {
+  name: string
+  role: string
+  img: string
+}
 
-const team = ref([
+const DEFAULT_PROFILE_IMAGE =
+  'https://res.cloudinary.com/dbja1kd6e/image/upload/v1746932847/blank-profile-picture-973460_1280_fuq7aw.png'
+
+const team: TeamMember[] = [
   {
     name: 'Audrey Kim',
     role: 'Co-founder',
@@ -19,16 +26,16 @@ const team = ref([
     role: 'Social Media Lead',
     img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747015355/IMG_3217_qv04ku.webp'
   },
-  {
-    name: 'Tiffany He',
-    role: 'Event Coordinator Lead',
-    img: ''
-  },
+  { name: 'Tiffany He', role: 'Event Coordinator Lead', img: '' },
   { name: 'Jiaxuan Lin', role: 'Fundraising Lead', img: '' },
   { name: 'Winnie Rong', role: 'Secretary', img: '' },
   { name: 'Yi Xia', role: 'Web Development Lead', img: '' },
   { name: 'Christina Chen', role: 'Outreach', img: '' },
-  { name: 'Elise Ann Dimatulac', role: 'Outreach', img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/c_crop,w_250,h_250/v1760404190/Screenshot_4_nozc4a.png' },
+  {
+    name: 'Elise Ann Dimatulac',
+    role: 'Outreach',
+    img: 'https://res.cloudinary.com/dbja1kd6e/image/upload/c_crop,w_250,h_250/v1760404190/Screenshot_4_nozc4a.png'
+  },
   { name: 'Kennix Li', role: 'Social Media', img: '' },
   { name: 'Serena Zhou', role: 'Social Media', img: '' },
   { name: 'Jasmina Marupova', role: 'Social Media', img: '' },
@@ -43,9 +50,8 @@ const team = ref([
   { name: 'Roger Zheng', role: 'Fundraising', img: '' },
   { name: 'Frank Zhu', role: 'Fundraising', img: '' },
   { name: 'Ricky Zheng', role: 'Fundraising', img: '' },
-  { name: 'Alexander Lee', role: 'Fundraising', img: '' },
-
-])
+  { name: 'Alexander Lee', role: 'Fundraising', img: '' }
+]
 </script>
 
 <template>
@@ -63,11 +69,10 @@ const team = ref([
         <div
           class="w-24 h-24 bg-gray-200 rounded-full mb-4 flex items-center justify-center text-gray-400 text-xl font-semibold overflow-hidden"
         >
-          <img v-if="member.img" :src="member.img" alt="" class="w-full h-full object-cover" />
           <img
-            v-else
-            src="https://res.cloudinary.com/dbja1kd6e/image/upload/v1746932847/blank-profile-picture-973460_1280_fuq7aw.png"
-            alt=""
+            :src="member.img || DEFAULT_PROFILE_IMAGE"
+            :alt="member.name"
+            class="w-full h-full object-cover"
           />
         </div>
 
