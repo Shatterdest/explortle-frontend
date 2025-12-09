@@ -50,56 +50,59 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import emailjs from 'emailjs-com';
+import { ref, reactive } from 'vue'
+import emailjs from 'emailjs-com'
 
-const form = reactive({
-  name: '',    
-  email: '',   
-  message: ''  
-});
+interface ContactForm {
+  name: string
+  email: string
+  message: string
+}
 
-const statusMessage = ref('');
-const statusClass = ref('');
+const form = reactive<ContactForm>({
+  name: '',
+  email: '',
+  message: ''
+})
 
-const sendContactForm = async () => {
+const statusMessage = ref('')
+const statusClass = ref('')
+
+const sendContactForm = async (): Promise<void> => {
+  const serviceID = 'service_xx62phj'
+  const templateID = 'template_bi2yaog'
+  const userID = '1ZQk7x1OgqnKTTHxl'
+
+  const templateParams = {
+    from_name: form.name,
+    message: form.message,
+    from_email: form.email
+  }
+
+  await emailjs.send(serviceID, templateID, templateParams, userID)
+}
+
+const submitForm = async (): Promise<void> => {
+  if (!form.name || !form.message) {
+    statusMessage.value = 'Please fill in all required fields.'
+    statusClass.value = 'text-red-600 font-medium'
+    return
+  }
+
   try {
-    const serviceID = 'service_xx62phj'; 
-    const templateID = 'template_bi2yaog'; 
-    const userID = '1ZQk7x1OgqnKTTHxl'; 
-
-    const templateParams = {
-      from_name: form.name, 
-      message: form.message,  
-      from_email: form.email  
-    };
-
-    await emailjs.send(serviceID, templateID, templateParams, userID);
-  } catch (error) {
-    throw new Error('Email sending failed');
+    await sendContactForm()
+    statusMessage.value = 'Your message has been sent successfully!'
+    statusClass.value = 'text-green-600 font-medium'
+    resetForm()
+  } catch {
+    statusMessage.value = 'There was an error sending your message. Please try again later.'
+    statusClass.value = 'text-red-600 font-medium'
   }
-};
+}
 
-const submitForm = async () => {
-  if (form.name && form.message) {
-    try {
-      await sendContactForm();
-      statusMessage.value = 'Your message has been sent successfully!';
-      statusClass.value = 'text-green-600 font-medium';
-      resetForm();  
-    } catch (error) {
-      statusMessage.value = 'There was an error sending your message. Please try again later.';
-      statusClass.value = 'text-red-600 font-medium';
-    }
-  } else {
-    statusMessage.value = 'Please fill in all required fields.';
-    statusClass.value = 'text-red-600 font-medium';
-  }
-};
-
-const resetForm = () => {
-  form.name = '';
-  form.email = '';
-  form.message = '';
-};
+const resetForm = (): void => {
+  form.name = ''
+  form.email = ''
+  form.message = ''
+}
 </script>

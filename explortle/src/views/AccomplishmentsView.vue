@@ -1,141 +1,65 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import { accomplishmentPartners } from '@/data/partners'
+import { useSlideshow } from '@/composables/useSlideshow'
 
-const accomplishments = [
-  {
-    name: 'Google',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547804/google-logo-transparent-background-free-png_crewre.png',
-    link: 'https://www.google.com'
-  },
-  {
-    name: 'New York University',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547672/Nyu-Logo-PNG-File_paatss.png',
-    link: 'https://www.nyu.edu'
-  },
-  {
-    name: 'Architecture Construction Engineering Mentorship',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547491/ace_kuq1ug.png',
-    link: 'https://www.acementor.org'
-  },
-  {
-    name: 'STEM Kids NYC',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750454719/IMG_7710-removebg-preview_xcl08w.png',
-    link: 'https://stemkidsnyc.org'
-  },
-  {
-    name: 'Staten Island Technical High School',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547755/114812-30708864-cc30-4eeb-8975-6e7ff636fbd4-removebg-preview_c32fpv.png',
-    link: 'https://www.siths.org'
-  },
-  {
-    name: 'DI Group Architecture',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747547919/cropped-DIGroupArchitecture_Tagline_Full_Color-01-6-1024x252_bxks5i.webp',
-    link: 'https://www.digrouparchitecture.com'
-  },
-  {
-    name: 'LEAP Academy',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1747548087/Screenshot_40-removebg-preview-removebg-preview_d76tjr.png',
-    link: 'https://www.yourleapforward.com'
-  },
-  {
-    name: 'Manhattan University (pending)',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750455043/250px-Manhattan_College_logo.svg_jllogn.png',
-    link: 'https://manhattan.edu'
-  },
-  {
-    name: 'The National Association of Asian American Professionals (pending)',
-    path: 'https://res.cloudinary.com/dbja1kd6e/image/upload/v1750455212/logoo-1_yt4v0c.webp',
-    link: 'https://ny.naaap.org'
-  }
-]
-const isMobile = ref(window.innerWidth < 768)
+// Process workshop images
+const workshopImageFiles = import.meta.glob<{ default: string }>('@/assets/imgs/workshops/*.png', {
+  eager: true
+})
+const workshopImages = Object.entries(workshopImageFiles)
+  .map(([path, img]) => {
+    const match = path.match(/(\d+)\.png$/)
+    return {
+      src: img.default,
+      number: match ? parseInt(match[1], 10) : 0
+    }
+  })
+  .sort((a, b) => a.number - b.number)
+  .map((img) => img.src)
 
-const updateScreenSize = () => {
-  isMobile.value = window.innerWidth < 768
-}
+// Process slide images
+const slideImageFiles = import.meta.glob<{ default: string }>('@/assets/imgs/slides/*.png', {
+  eager: true
+})
+const slideImages = Object.entries(slideImageFiles)
+  .map(([path, img]) => {
+    const match = path.match(/(\d+)\.png$/)
+    return {
+      src: img.default,
+      number: match ? parseInt(match[1], 10) : 0
+    }
+  })
+  .sort((a, b) => a.number - b.number)
+  .map((img) => img.src)
 
-// --- First Slideshow Logic ---
-const imageFiles = import.meta.glob('@/assets/imgs/workshops/*.png', { eager: true })
-const images = ref(
-  Object.entries(imageFiles)
-    .map(([path, img]) => {
-      const match = path.match(/(\d+)\.png$/)
-      const number = match ? parseInt(match[1], 10) : 0
-      return {
-        path,
-        src: (img as any).default,
-        number
-      }
-    })
-    .sort((a, b) => a.number - b.number)
-    .map((img) => img.src)
-)
-const currentSlide = ref(0)
-const slidingDirection = ref<'next' | 'prev'>('next')
-let slideInterval: ReturnType<typeof setInterval> | null = null
-const startAutoSlide = () => {
-  slideInterval = setInterval(() => {
-    nextSlide()
-  }, 3000)
-}
-const stopAutoSlide = () => {
-  if (slideInterval) {
-    clearInterval(slideInterval)
-  }
-}
-const nextSlide = () => {
-  slidingDirection.value = 'next'
-  currentSlide.value = (currentSlide.value + 1) % images.value.length
-}
-const prevSlide = () => {
-  slidingDirection.value = 'prev'
-  currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length
-}
+// Use slideshow composables
+const {
+  currentSlide,
+  slidingDirection,
+  nextSlide,
+  prevSlide,
+  startAutoSlide,
+  stopAutoSlide
+} = useSlideshow(workshopImages)
 
-// --- Second Slideshow Logic (from HomeView) ---
-const homeImageFiles = import.meta.glob('@/assets/imgs/slides/*.png', { eager: true })
-const homeImages = ref(
-  Object.entries(homeImageFiles)
-    .map(([path, img]) => {
-      const match = path.match(/(\d+)\.png$/)
-      const number = match ? parseInt(match[1], 10) : 0
-      return {
-        path,
-        src: (img as any).default,
-        number
-      }
-    })
-    .sort((a, b) => a.number - b.number)
-    .map((img) => img.src)
-)
-const homeCurrentSlide = ref(0)
-const homeSlidingDirection = ref<'next' | 'prev'>('next')
-let homeSlideInterval: ReturnType<typeof setInterval> | null = null
-const homeStartAutoSlide = () => {
-  homeSlideInterval = setInterval(() => {
-    homeNextSlide()
-  }, 3000)
-}
-const homeStopAutoSlide = () => {
-  if (homeSlideInterval) {
-    clearInterval(homeSlideInterval)
-  }
-}
-const homeNextSlide = () => {
-  homeSlidingDirection.value = 'next'
-  homeCurrentSlide.value = (homeCurrentSlide.value + 1) % homeImages.value.length
-}
-const homePrevSlide = () => {
-  homeSlidingDirection.value = 'prev'
-  homeCurrentSlide.value =
-    (homeCurrentSlide.value - 1 + homeImages.value.length) % homeImages.value.length
-}
+const {
+  currentSlide: homeCurrentSlide,
+  slidingDirection: homeSlidingDirection,
+  nextSlide: homeNextSlide,
+  prevSlide: homePrevSlide,
+  startAutoSlide: homeStartAutoSlide,
+  stopAutoSlide: homeStopAutoSlide
+} = useSlideshow(slideImages)
 
 onMounted(() => {
-  window.addEventListener('resize', updateScreenSize)
-  updateScreenSize()
   startAutoSlide()
   homeStartAutoSlide()
+})
+
+onUnmounted(() => {
+  stopAutoSlide()
+  homeStopAutoSlide()
 })
 </script>
 
@@ -159,9 +83,9 @@ onMounted(() => {
           <div class="relative w-full h-full">
             <transition :name="slidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
               <img
-                v-if="images.length"
+                v-if="workshopImages.length"
                 :key="currentSlide"
-                :src="images[currentSlide]"
+                :src="workshopImages[currentSlide]"
                 alt="Workshop Image"
                 class="absolute w-full h-full object-cover"
               />
@@ -215,9 +139,9 @@ onMounted(() => {
         <div class="relative w-full h-full">
           <transition :name="homeSlidingDirection === 'next' ? 'slide-next' : 'slide-prev'">
             <img
-              v-if="homeImages.length"
+              v-if="slideImages.length"
               :key="homeCurrentSlide"
-              :src="homeImages[homeCurrentSlide]"
+              :src="slideImages[homeCurrentSlide]"
               alt="Explortle Event"
               class="absolute w-full h-full object-cover"
             />
@@ -247,14 +171,14 @@ onMounted(() => {
 
       <div class="mt-10 grid grid-cols-1 sm:grid-cols-4 gap-6 w-5/6 mx-auto">
         <div
-          v-for="a in accomplishments"
-          :key="a.name"
+          v-for="partner in accomplishmentPartners"
+          :key="partner.name"
           class="bg-white shadow-md rounded-lg overflow-hidden transform hover:-translate-y-2 transition duration-300"
         >
-          <a target="_blank" :href="a.link" class="block p-6 text-center">
-            <img class="mx-auto mb-4 max-h-24 rounded-md" :src="a.path" :alt="a.name" />
+          <a target="_blank" :href="partner.link" class="block p-6 text-center">
+            <img class="mx-auto mb-4 max-h-24 rounded-md" :src="partner.path" :alt="partner.name" />
             <h3 class="text-2xl font-heading font-semibold text-gray-700">
-              {{ a.name }}
+              {{ partner.name }}
             </h3>
           </a>
         </div>

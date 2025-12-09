@@ -1,3 +1,13 @@
+export interface Career {
+  id: number
+  name: string
+  averagepay: string
+  image: string
+  url: string
+  description: string
+  uid?: string
+}
+
 export const baseCareers: Career[] = [
   {
     id: 1,
@@ -160,17 +170,3 @@ export const baseCareers: Career[] = [
     description: 'Design, create, and maintain websites and web applications.'
   },
 ]
-
-export const selectedCareers = []
-
-export const careers = [...baseCareers, ...baseCareers]
-
-export interface Career {
-  id: number
-  name: string
-  averagepay: string
-  image: string
-  url: string
-  description: string
-  uid?: string
-}
