@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted } from 'vue'
 import { accomplishmentPartners } from '@/data/partners'
 import { useSlideshow } from '@/composables/useSlideshow'
 
@@ -33,7 +33,7 @@ const slideImages = Object.entries(slideImageFiles)
   .sort((a, b) => a.number - b.number)
   .map((img) => img.src)
 
-// Use slideshow composables
+// Use slideshow composables (cleanup handled internally by composable)
 const {
   currentSlide,
   slidingDirection,
@@ -55,11 +55,6 @@ const {
 onMounted(() => {
   startAutoSlide()
   homeStartAutoSlide()
-})
-
-onUnmounted(() => {
-  stopAutoSlide()
-  homeStopAutoSlide()
 })
 </script>
 
